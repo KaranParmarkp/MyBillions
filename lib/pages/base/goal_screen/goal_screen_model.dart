@@ -18,8 +18,6 @@ class GoalScreenModel extends FlutterFlowModel<GoalScreenWidget> {
   // Model for appbar_logo component.
   late AppbarLogoModel appbarLogoModel;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     appBgModel = createModel(context, () => AppBgModel());
@@ -32,8 +30,4 @@ class GoalScreenModel extends FlutterFlowModel<GoalScreenWidget> {
     appBgModel.dispose();
     appbarLogoModel.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

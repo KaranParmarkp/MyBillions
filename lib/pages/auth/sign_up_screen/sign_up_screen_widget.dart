@@ -97,7 +97,17 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                                       '0n02yfyh' /* Register */,
                                     ),
                                     style: FlutterFlowTheme.of(context)
-                                        .displaySmall,
+                                        .displaySmall
+                                        .override(
+                                          fontFamily:
+                                              FlutterFlowTheme.of(context)
+                                                  .displaySmallFamily,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: GoogleFonts.asMap()
+                                              .containsKey(
+                                                  FlutterFlowTheme.of(context)
+                                                      .displaySmallFamily),
+                                        ),
                                   ),
                                 ),
                               ),
@@ -165,8 +175,17 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
                                   color: Color(0x001A1F24),
-                                  textStyle:
-                                      FlutterFlowTheme.of(context).bodySmall,
+                                  textStyle: FlutterFlowTheme.of(context)
+                                      .bodySmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .bodySmallFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmallFamily),
+                                      ),
                                   elevation: 0.0,
                                   borderSide: BorderSide(
                                     color: Colors.transparent,
@@ -363,7 +382,19 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                                           'o1xk7b0j' /* Already have an account? */,
                                         ),
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMediumFamily,
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: GoogleFonts
+                                                      .asMap()
+                                                  .containsKey(
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMediumFamily),
+                                            ),
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
@@ -381,6 +412,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
+                                                letterSpacing: 0.0,
                                                 useGoogleFonts: GoogleFonts
                                                         .asMap()
                                                     .containsKey(

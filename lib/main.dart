@@ -89,6 +89,8 @@ class _MyAppState extends State<MyApp> {
           thumbVisibility: MaterialStateProperty.all(false),
           trackVisibility: MaterialStateProperty.all(true),
           interactive: true,
+          thickness: MaterialStateProperty.all(1.0),
+          radius: Radius.circular(10.0),
           trackColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.hovered)) {
               return Color(4294819072);
@@ -97,12 +99,12 @@ class _MyAppState extends State<MyApp> {
           }),
           thumbColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.dragged)) {
-              return Color(4294819072);
+              return Color(4294953984);
             }
             if (states.contains(MaterialState.hovered)) {
-              return Color(4294819072);
+              return Color(4294953984);
             }
-            return Color(4294819072);
+            return Color(4294953984);
           }),
         ),
         useMaterial3: false,
@@ -183,7 +185,7 @@ class _NavBarPageState extends State<NavBarPage> {
                 ),
                 Text(
                   FFLocalizations.of(context).getText(
-                    'w3tvu8z5' /* Home */,
+                    'w3tvu8z5' /* Dashboard */,
                   ),
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

@@ -25,6 +25,11 @@ class MyBillionsApiGroupGroup {
   static SignUpCall signUpCall = SignUpCall();
   static ForgotPasswordCall forgotPasswordCall = ForgotPasswordCall();
   static ResetPasswordCall resetPasswordCall = ResetPasswordCall();
+  static ReportsPfDropdownCall reportsPfDropdownCall = ReportsPfDropdownCall();
+  static GetProfileCall getProfileCall = GetProfileCall();
+  static ClientManagementCall clientManagementCall = ClientManagementCall();
+  static FeesDetailsCall feesDetailsCall = FeesDetailsCall();
+  static DownloadInvoiceCall downloadInvoiceCall = DownloadInvoiceCall();
 }
 
 class SignInCall {
@@ -249,7 +254,7 @@ class PerformanceReportDataCall {
 
 class RecommendationsDataCall {
   Future<ApiCallResponse> call({
-    String? customerId = '',
+    int? customerId,
   }) async {
     return ApiManager.instance.makeApiCall(
       callName: 'recommendationsData',
@@ -276,6 +281,78 @@ class RecommendationsDataCall {
         r'''$.RecommendationList''',
         true,
       ) as List?;
+  List<String>? schemeList(dynamic response) => (getJsonField(
+        response,
+        r'''$.RecommendationList[:].SchemeName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? newSchemeList(dynamic response) => (getJsonField(
+        response,
+        r'''$.RecommendationList[:].NewSchemeName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? expiryList(dynamic response) => (getJsonField(
+        response,
+        r'''$.RecommendationList[:].ExpiryDate''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? planNameList(dynamic response) => (getJsonField(
+        response,
+        r'''$.RecommendationList[:].GoalID''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? unitList(dynamic response) => (getJsonField(
+        response,
+        r'''$.RecommendationList[:].Unit''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? typeList(dynamic response) => (getJsonField(
+        response,
+        r'''$.RecommendationList[:].TransactionType''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<int>? amuontList(dynamic response) => (getJsonField(
+        response,
+        r'''$.RecommendationList[:].Amount''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<String>? remarksList(dynamic response) => (getJsonField(
+        response,
+        r'''$.RecommendationList[:].Remarks''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
 }
 
 class SignUpCall {
@@ -404,6 +481,237 @@ class ResetPasswordCall {
   String? responseMessage(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.ResponseMessage''',
+      ));
+}
+
+class ReportsPfDropdownCall {
+  Future<ApiCallResponse> call({
+    int? customerID,
+    String? startDate = '16/01/2019',
+    String? endDate = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'reports  pf dropdown',
+      apiUrl:
+          '${MyBillionsApiGroupGroup.baseUrl}Report/getDefaultDatForPortfolioReport',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'customerID': customerID,
+        'startDate': startDate,
+        'endDate': endDate,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List<String>? investorNames(dynamic response) => (getJsonField(
+        response,
+        r'''$.InvestorLists[:].Name''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? customerPlanName(dynamic response) => (getJsonField(
+        response,
+        r'''$.customerPlanLists[:].PlanName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List? investorLists(dynamic response) => getJsonField(
+        response,
+        r'''$.InvestorLists''',
+        true,
+      ) as List?;
+  List? customerPlanLists(dynamic response) => getJsonField(
+        response,
+        r'''$.customerPlanLists''',
+        true,
+      ) as List?;
+}
+
+class GetProfileCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'get profile',
+      apiUrl: '${MyBillionsApiGroupGroup.baseUrl}Customers/GetCustomer',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'id': id,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  int? customerID(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.customer.CustomerID''',
+      ));
+  String? emailID(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.customer.EmailID''',
+      ));
+  String? fullName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.customer.FullName''',
+      ));
+  String? membershipType(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.customer.MembershipPlanCode''',
+      ));
+  String? mobile(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.customer.Mobile''',
+      ));
+  String? residencyStatus(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.customer.ResidencyStatus''',
+      ));
+  String? taxBracket(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.customer.TaxBracket''',
+      ));
+  String? membershipModel(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.customer.MembershipPlanOption''',
+      ));
+  String? memberSince(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.customer.UpdateDateTime''',
+      ));
+  int? risk(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.customer.RiskRating''',
+      ));
+}
+
+class ClientManagementCall {
+  Future<ApiCallResponse> call({
+    int? customerId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'client management',
+      apiUrl:
+          '${MyBillionsApiGroupGroup.baseUrl}Customers/GetCustomersInvestors',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'customerId': customerId,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? investors(dynamic response) => getJsonField(
+        response,
+        r'''$.Investors''',
+        true,
+      ) as List?;
+  List<String>? clientCodeLIst(dynamic response) => (getJsonField(
+        response,
+        r'''$.Investors[:].ClientCode''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? bankName(dynamic response) => (getJsonField(
+        response,
+        r'''$.bankMaster[:].BankName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class FeesDetailsCall {
+  Future<ApiCallResponse> call({
+    String? customerId = '',
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Fees Details',
+      apiUrl:
+          '${MyBillionsApiGroupGroup.baseUrl}Report/FeereportCustomer?customerId=${customerId}',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? invoicerept(dynamic response) => getJsonField(
+        response,
+        r'''$.invoicerept''',
+        true,
+      ) as List?;
+}
+
+class DownloadInvoiceCall {
+  Future<ApiCallResponse> call({
+    int? invoiceNumber,
+    int? customerId,
+  }) async {
+    return ApiManager.instance.makeApiCall(
+      callName: 'download invoice',
+      apiUrl: '${MyBillionsApiGroupGroup.baseUrl}Fee/GenerateInvoice',
+      callType: ApiCallType.GET,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'InvoiceNumber': invoiceNumber,
+        'customerId': customerId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? link(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$''',
       ));
 }
 

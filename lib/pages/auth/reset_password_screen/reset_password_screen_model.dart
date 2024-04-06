@@ -35,8 +35,6 @@ class ResetPasswordScreenModel
   // Stores action output result for [Backend Call - API (reset password)] action in app_button widget.
   ApiCallResponse? resetApiResponse;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     appBgNewModel = createModel(context, () => AppBgNewModel());
@@ -65,9 +63,7 @@ class ResetPasswordScreenModel
     appButtonModel2.dispose();
   }
 
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
+  /// Additional helper methods.
 
   String? _formTextFieldValidator1(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {

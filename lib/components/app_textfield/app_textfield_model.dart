@@ -14,8 +14,6 @@ class AppTextfieldModel extends FlutterFlowModel<AppTextfieldWidget> {
   TextEditingController? textfieldController;
   String? Function(BuildContext, String?)? textfieldControllerValidator;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {}
 
@@ -24,8 +22,4 @@ class AppTextfieldModel extends FlutterFlowModel<AppTextfieldWidget> {
     textfieldFocusNode?.dispose();
     textfieldController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

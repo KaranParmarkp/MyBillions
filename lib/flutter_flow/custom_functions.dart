@@ -35,3 +35,18 @@ String doubleToStringFixed(
 ) {
   return value != null ? value.toStringAsFixed(strigFixed ?? 2) : "0";
 }
+
+String formateStringToDate(String? date) {
+  return date != null && date != ""
+      ? DateFormat('MMM dd, yyyy').format(DateTime.parse(date))
+      : "";
+}
+
+DateTime dmyToDatetime(String date) {
+  DateFormat format = DateFormat('dd/MM/yyyy');
+  return format.parse(date);
+}
+
+DateTime stringToDateTime(String date) {
+  return DateTime.parse(date);
+}

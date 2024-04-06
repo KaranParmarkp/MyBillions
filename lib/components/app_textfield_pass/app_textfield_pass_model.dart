@@ -15,8 +15,6 @@ class AppTextfieldPassModel extends FlutterFlowModel<AppTextfieldPassWidget> {
   late bool textfieldVisibility;
   String? Function(BuildContext, String?)? textfieldControllerValidator;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     textfieldVisibility = false;
@@ -27,8 +25,4 @@ class AppTextfieldPassModel extends FlutterFlowModel<AppTextfieldPassWidget> {
     textfieldFocusNode?.dispose();
     textfieldController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

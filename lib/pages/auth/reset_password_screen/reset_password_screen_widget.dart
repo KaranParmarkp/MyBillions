@@ -98,8 +98,17 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                                   FFLocalizations.of(context).getText(
                                     'idx79yiw' /* Reset Password */,
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).displaySmall,
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .displaySmallFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .displaySmallFamily),
+                                      ),
                                 ),
                               ),
                             ),

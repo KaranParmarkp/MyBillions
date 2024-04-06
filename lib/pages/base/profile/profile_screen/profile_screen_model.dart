@@ -1,11 +1,9 @@
+import '/auth/custom_auth/auth_util.dart';
 import '/components/app_bg/app_bg_widget.dart';
 import '/components/appbar_logo/appbar_logo_widget.dart';
-import '/flutter_flow/flutter_flow_button_tabbar.dart';
-import '/flutter_flow/flutter_flow_data_table.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/random_data_util.dart' as random_data;
 import 'profile_screen_widget.dart' show ProfileScreenWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -20,15 +18,6 @@ class ProfileScreenModel extends FlutterFlowModel<ProfileScreenWidget> {
   late AppBgModel appBgModel;
   // Model for appbar_logo component.
   late AppbarLogoModel appbarLogoModel;
-  // State field(s) for TabBar widget.
-  TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-
-  // State field(s) for PaginatedDataTable widget.
-  final paginatedDataTableController = FlutterFlowDataTableController<String>();
-
-  /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
@@ -41,10 +30,5 @@ class ProfileScreenModel extends FlutterFlowModel<ProfileScreenWidget> {
     unfocusNode.dispose();
     appBgModel.dispose();
     appbarLogoModel.dispose();
-    tabBarController?.dispose();
   }
-
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
 }

@@ -59,9 +59,19 @@ class _AppTextfieldPassWidgetState extends State<AppTextfieldPassWidget> {
         obscureText: !_model.textfieldVisibility,
         decoration: InputDecoration(
           labelText: widget.label,
-          labelStyle: FlutterFlowTheme.of(context).bodySmall,
+          labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
+                fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
+                letterSpacing: 0.0,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+              ),
           hintText: widget.hint,
-          hintStyle: FlutterFlowTheme.of(context).bodySmall,
+          hintStyle: FlutterFlowTheme.of(context).bodySmall.override(
+                fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
+                letterSpacing: 0.0,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+              ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: FlutterFlowTheme.of(context).textColor,
@@ -108,7 +118,13 @@ class _AppTextfieldPassWidgetState extends State<AppTextfieldPassWidget> {
             ),
           ),
         ),
-        style: FlutterFlowTheme.of(context).bodyMedium,
+        style: FlutterFlowTheme.of(context).bodyMedium.override(
+              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+              letterSpacing: 0.0,
+              useGoogleFonts: GoogleFonts.asMap()
+                  .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+            ),
+        minLines: null,
         validator: _model.textfieldControllerValidator.asValidator(context),
       ),
     );

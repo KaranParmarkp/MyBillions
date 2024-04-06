@@ -94,8 +94,17 @@ class _ForgotPasswordScreenWidgetState
                                   FFLocalizations.of(context).getText(
                                     's6tj9e8y' /* Forgot Password */,
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).displaySmall,
+                                  style: FlutterFlowTheme.of(context)
+                                      .displaySmall
+                                      .override(
+                                        fontFamily: FlutterFlowTheme.of(context)
+                                            .displaySmallFamily,
+                                        letterSpacing: 0.0,
+                                        useGoogleFonts: GoogleFonts.asMap()
+                                            .containsKey(
+                                                FlutterFlowTheme.of(context)
+                                                    .displaySmallFamily),
+                                      ),
                                 ),
                               ),
                             ),

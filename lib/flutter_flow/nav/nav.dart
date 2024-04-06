@@ -90,12 +90,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : SignInScreenWidget(),
           routes: [
             FFRoute(
-              name: 'old_sign_in_screen',
-              path: 'oldSignInScreen',
-              requireAuth: true,
-              builder: (context, params) => OldSignInScreenWidget(),
-            ),
-            FFRoute(
               name: 'dashboard_screen',
               path: 'dashboardScreen',
               requireAuth: true,
@@ -111,21 +105,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'forgot_password_screen',
               path: 'forgotPasswordScreen',
-              requireAuth: true,
               builder: (context, params) => ForgotPasswordScreenWidget(),
             ),
             FFRoute(
               name: 'sign_up_screen',
               path: 'signUpScreen',
-              requireAuth: true,
               builder: (context, params) => SignUpScreenWidget(),
             ),
             FFRoute(
               name: 'reset_password_screen',
               path: 'resetPasswordScreen',
-              requireAuth: true,
               builder: (context, params) => ResetPasswordScreenWidget(
-                email: params.getParam('email', ParamType.String),
+                email: params.getParam(
+                  'email',
+                  ParamType.String,
+                ),
               ),
             ),
             FFRoute(
@@ -143,6 +137,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'profile_screen')
                   : ProfileScreenWidget(),
+            ),
+            FFRoute(
+              name: 'personal_details_screen',
+              path: 'personalDetailsScreen',
+              requireAuth: true,
+              builder: (context, params) => PersonalDetailsScreenWidget(),
+            ),
+            FFRoute(
+              name: 'fees_details_screen',
+              path: 'feesDetailsScreen',
+              requireAuth: true,
+              builder: (context, params) => FeesDetailsScreenWidget(),
+            ),
+            FFRoute(
+              name: 'client_screen',
+              path: 'clientScreen',
+              requireAuth: true,
+              builder: (context, params) => ClientScreenWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),
@@ -263,6 +275,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
+    StructBuilder<T>? structBuilder,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -280,6 +293,7 @@ class FFParameters {
       param,
       type,
       isList,
+      structBuilder: structBuilder,
     );
   }
 }

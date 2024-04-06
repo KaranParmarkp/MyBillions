@@ -62,6 +62,7 @@ class _AppButtonWidgetState extends State<AppButtonWidget> {
         textStyle: FlutterFlowTheme.of(context).titleSmall.override(
               fontFamily: FlutterFlowTheme.of(context).titleSmallFamily,
               color: FlutterFlowTheme.of(context).background,
+              letterSpacing: 0.0,
               fontWeight: FontWeight.bold,
               useGoogleFonts: GoogleFonts.asMap()
                   .containsKey(FlutterFlowTheme.of(context).titleSmallFamily),

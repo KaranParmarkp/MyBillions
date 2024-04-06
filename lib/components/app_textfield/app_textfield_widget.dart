@@ -12,11 +12,13 @@ class AppTextfieldWidget extends StatefulWidget {
     super.key,
     String? hint,
     String? label,
+    this.initialValue,
   })  : this.hint = hint ?? ' ',
         this.label = label ?? ' ';
 
   final String hint;
   final String label;
+  final String? initialValue;
 
   @override
   State<AppTextfieldWidget> createState() => _AppTextfieldWidgetState();
@@ -36,7 +38,8 @@ class _AppTextfieldWidgetState extends State<AppTextfieldWidget> {
     super.initState();
     _model = createModel(context, () => AppTextfieldModel());
 
-    _model.textfieldController ??= TextEditingController();
+    _model.textfieldController ??=
+        TextEditingController(text: widget.initialValue);
     _model.textfieldFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -59,9 +62,19 @@ class _AppTextfieldWidgetState extends State<AppTextfieldWidget> {
         obscureText: false,
         decoration: InputDecoration(
           labelText: widget.label,
-          labelStyle: FlutterFlowTheme.of(context).bodySmall,
+          labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
+                fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
+                letterSpacing: 0.0,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+              ),
           hintText: widget.hint,
-          hintStyle: FlutterFlowTheme.of(context).bodySmall,
+          hintStyle: FlutterFlowTheme.of(context).bodySmall.override(
+                fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
+                letterSpacing: 0.0,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
+              ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: FlutterFlowTheme.of(context).textColor,
@@ -95,7 +108,13 @@ class _AppTextfieldWidgetState extends State<AppTextfieldWidget> {
           contentPadding:
               EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
         ),
-        style: FlutterFlowTheme.of(context).bodyMedium,
+        style: FlutterFlowTheme.of(context).bodyMedium.override(
+              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+              letterSpacing: 0.0,
+              useGoogleFonts: GoogleFonts.asMap()
+                  .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+            ),
+        minLines: null,
         cursorColor: FlutterFlowTheme.of(context).primaryText,
         validator: _model.textfieldControllerValidator.asValidator(context),
       ),

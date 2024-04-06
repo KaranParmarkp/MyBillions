@@ -39,8 +39,6 @@ class SignUpScreenModel extends FlutterFlowModel<SignUpScreenWidget> {
   // Stores action output result for [Backend Call - API (sign up)] action in app_button widget.
   ApiCallResponse? signUpResponse;
 
-  /// Initialization and disposal methods.
-
   @override
   void initState(BuildContext context) {
     appBgNewModel = createModel(context, () => AppBgNewModel());
@@ -73,9 +71,7 @@ class SignUpScreenModel extends FlutterFlowModel<SignUpScreenWidget> {
     appButtonModel.dispose();
   }
 
-  /// Action blocks are added here.
-
-  /// Additional helper methods are added here.
+  /// Additional helper methods.
 
   String? _formTextFieldValidator1(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {

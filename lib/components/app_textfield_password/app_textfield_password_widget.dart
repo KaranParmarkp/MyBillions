@@ -58,11 +58,17 @@ class _AppTextfieldPasswordWidgetState
         autofocus: true,
         obscureText: !_model.passwordVisibility,
         decoration: InputDecoration(
-          labelStyle: FlutterFlowTheme.of(context).labelMedium,
+          labelStyle: FlutterFlowTheme.of(context).labelMedium.override(
+                fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
+                letterSpacing: 0.0,
+                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                    FlutterFlowTheme.of(context).labelMediumFamily),
+              ),
           hintText: widget.hint,
           hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                 fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
                 color: FlutterFlowTheme.of(context).accent2,
+                letterSpacing: 0.0,
                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                     FlutterFlowTheme.of(context).labelMediumFamily),
               ),
@@ -110,7 +116,13 @@ class _AppTextfieldPasswordWidgetState
             ),
           ),
         ),
-        style: FlutterFlowTheme.of(context).bodyMedium,
+        style: FlutterFlowTheme.of(context).bodyMedium.override(
+              fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+              letterSpacing: 0.0,
+              useGoogleFonts: GoogleFonts.asMap()
+                  .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+            ),
+        minLines: null,
         cursorColor: FlutterFlowTheme.of(context).primaryText,
         validator: _model.textControllerValidator.asValidator(context),
       ),

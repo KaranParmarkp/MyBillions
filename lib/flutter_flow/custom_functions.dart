@@ -321,6 +321,11 @@ int getInvestorId(
   List<dynamic> jsonList,
   String searchString,
 ) {
+  for (var item in jsonList) {
+    if (item["Name"] != null && item["Name"].contains(searchString)) {
+      return item["InvestorID"];
+    }
+  }
   return 0;
 }
 

@@ -154,25 +154,6 @@ class _PfFiltersWidgetState extends State<PfFiltersWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        functions
-                            .getInvestorId(
-                                MyBillionsApiGroupGroup.reportsPfDropdownCall
-                                    .investorLists(
-                                      columnReportsPfDropdownResponse.jsonBody,
-                                    )!
-                                    .toList(),
-                                _model.applicantDropdownValue!)
-                            .toString(),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily:
-                                  FlutterFlowTheme.of(context).bodyMediumFamily,
-                              letterSpacing: 0.0,
-                              useGoogleFonts: GoogleFonts.asMap().containsKey(
-                                  FlutterFlowTheme.of(context)
-                                      .bodyMediumFamily),
-                            ),
-                      ),
-                      Text(
                         FFLocalizations.of(context).getText(
                           '23mbnyma' /* Applicant */,
                         ),
@@ -191,7 +172,12 @@ class _PfFiltersWidgetState extends State<PfFiltersWidget> {
                         child: FlutterFlowDropDown<String>(
                           controller:
                               _model.applicantDropdownValueController ??=
-                                  FormFieldController<String>(null),
+                                  FormFieldController<String>(
+                            _model.applicantDropdownValue ??=
+                                FFLocalizations.of(context).getText(
+                              '07zfvzsj' /* All */,
+                            ),
+                          ),
                           options: PortfolioFilterModelStruct.maybeFromMap(
                                   columnReportsPfDropdownResponse.jsonBody)!
                               .investorLists
@@ -271,7 +257,12 @@ class _PfFiltersWidgetState extends State<PfFiltersWidget> {
                             0.0, 10.0, 0.0, 10.0),
                         child: FlutterFlowDropDown<String>(
                           controller: _model.goalsDropdownValueController ??=
-                              FormFieldController<String>(null),
+                              FormFieldController<String>(
+                            _model.goalsDropdownValue ??=
+                                FFLocalizations.of(context).getText(
+                              'pgzgs0xq' /* All */,
+                            ),
+                          ),
                           options: PortfolioFilterModelStruct.maybeFromMap(
                                   columnReportsPfDropdownResponse.jsonBody)!
                               .customerPlanLists
@@ -281,14 +272,17 @@ class _PfFiltersWidgetState extends State<PfFiltersWidget> {
                             safeSetState(() => _model.goalsDropdownValue = val);
                             _model.updateLocalRequestModelStruct(
                               (e) => e
-                                ..planID = functions.getPlanId(
-                                    PortfolioFilterModelStruct.maybeFromMap(
-                                            columnReportsPfDropdownResponse
-                                                .jsonBody)!
-                                        .customerPlanLists
-                                        .map((e) => e.toMap())
-                                        .toList(),
-                                    _model.goalsDropdownValue!),
+                                ..planID = valueOrDefault<int>(
+                                  functions.getPlanId(
+                                      PortfolioFilterModelStruct.maybeFromMap(
+                                              columnReportsPfDropdownResponse
+                                                  .jsonBody)!
+                                          .customerPlanLists
+                                          .map((e) => e.toMap())
+                                          .toList(),
+                                      _model.goalsDropdownValue!),
+                                  0,
+                                ),
                             );
                             safeSetState(() {});
                           },

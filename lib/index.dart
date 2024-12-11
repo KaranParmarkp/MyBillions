@@ -9,12 +9,17 @@ export '/pages/auth/sign_up_screen/sign_up_screen_widget.dart'
     show SignUpScreenWidget;
 export '/pages/auth/reset_password_screen/reset_password_screen_widget.dart'
     show ResetPasswordScreenWidget;
-export '/pages/base/goal_screen/goal_screen_widget.dart' show GoalScreenWidget;
+export '/pages/base/goals/goal_screen/goal_screen_widget.dart'
+    show GoalScreenWidget;
 export '/pages/base/profile/profile_screen/profile_screen_widget.dart'
     show ProfileScreenWidget;
-export '/pages/base/profile/personal_details_screen/personal_details_screen_widget.dart'
+export '/pages/base/profile/personal_details/personal_details_screen/personal_details_screen_widget.dart'
     show PersonalDetailsScreenWidget;
 export '/pages/base/profile/fees_details_screen/fees_details_screen_widget.dart'
     show FeesDetailsScreenWidget;
 export '/pages/base/profile/client_screen/client_screen_widget.dart'
     show ClientScreenWidget;
+export '/pages/base/goals/tax_saving/text_saving_screen/text_saving_screen_widget.dart'
+    show TextSavingScreenWidget;
+export '/pages/base/goals/tax_saving/text_saving_questions_screen/text_saving_questions_screen_widget.dart'
+    show TextSavingQuestionsScreenWidget;

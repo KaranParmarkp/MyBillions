@@ -28,7 +28,7 @@ class _AppBgNewWidgetState extends State<AppBgNewWidget> {
     super.initState();
     _model = createModel(context, () => AppBgNewModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override

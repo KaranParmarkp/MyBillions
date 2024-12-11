@@ -32,7 +32,7 @@ class _ForgotPasswordScreenWidgetState
     super.initState();
     _model = createModel(context, () => ForgotPasswordScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -45,9 +45,7 @@ class _ForgotPasswordScreenWidgetState
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -55,7 +53,7 @@ class _ForgotPasswordScreenWidgetState
           children: [
             wrapWithModel(
               model: _model.appBgNewModel,
-              updateCallback: () => setState(() {}),
+              updateCallback: () => safeSetState(() {}),
               child: AppBgNewWidget(),
             ),
             Container(
@@ -75,7 +73,7 @@ class _ForgotPasswordScreenWidgetState
                         alignment: AlignmentDirectional(0.0, 0.0),
                         child: wrapWithModel(
                           model: _model.appLogoNewModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: AppLogoNewWidget(
                             showPadding: true,
                           ),
@@ -113,7 +111,7 @@ class _ForgotPasswordScreenWidgetState
                       ),
                       wrapWithModel(
                         model: _model.emailTexfieldModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         child: AppTextfieldWidget(
                           hint: 'Enter your email',
                           label: 'Enter email',
@@ -128,10 +126,10 @@ class _ForgotPasswordScreenWidgetState
                                   0.0, 0.0, 10.0, 0.0),
                               child: wrapWithModel(
                                 model: _model.appButtonModel1,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: AppButtonWidget(
                                   title: 'Back',
-                                  onTap: () async {
+                                  onButtonTap: () async {
                                     context.pop();
                                   },
                                 ),
@@ -144,10 +142,10 @@ class _ForgotPasswordScreenWidgetState
                                   10.0, 0.0, 0.0, 0.0),
                               child: wrapWithModel(
                                 model: _model.appButtonModel2,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: AppButtonWidget(
                                   title: 'Send Code',
-                                  onTap: () async {
+                                  onButtonTap: () async {
                                     if (_model.formKey.currentState == null ||
                                         !_model.formKey.currentState!
                                             .validate()) {
@@ -158,8 +156,9 @@ class _ForgotPasswordScreenWidgetState
                                             .forgotPasswordCall
                                             .call(
                                       loginID: _model.emailTexfieldModel
-                                          .textfieldController.text,
+                                          .textfieldTextController.text,
                                     );
+
                                     if (MyBillionsApiGroupGroup
                                             .forgotPasswordCall
                                             .responseCode(
@@ -197,7 +196,7 @@ class _ForgotPasswordScreenWidgetState
                                         queryParameters: {
                                           'email': serializeParam(
                                             _model.emailTexfieldModel
-                                                .textfieldController.text,
+                                                .textfieldTextController.text,
                                             ParamType.String,
                                           ),
                                         }.withoutNulls,
@@ -229,7 +228,7 @@ class _ForgotPasswordScreenWidgetState
                                       );
                                     }
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),

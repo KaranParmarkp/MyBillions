@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -78,18 +79,47 @@ class FFLocalizations {
   };
 }
 
+/// Used if the locale is not supported by GlobalMaterialLocalizations.
+class FallbackMaterialLocalizationDelegate
+    extends LocalizationsDelegate<MaterialLocalizations> {
+  const FallbackMaterialLocalizationDelegate();
+
+  @override
+  bool isSupported(Locale locale) => _isSupportedLocale(locale);
+
+  @override
+  Future<MaterialLocalizations> load(Locale locale) async =>
+      SynchronousFuture<MaterialLocalizations>(
+        const DefaultMaterialLocalizations(),
+      );
+
+  @override
+  bool shouldReload(FallbackMaterialLocalizationDelegate old) => false;
+}
+
+/// Used if the locale is not supported by GlobalCupertinoLocalizations.
+class FallbackCupertinoLocalizationDelegate
+    extends LocalizationsDelegate<CupertinoLocalizations> {
+  const FallbackCupertinoLocalizationDelegate();
+
+  @override
+  bool isSupported(Locale locale) => _isSupportedLocale(locale);
+
+  @override
+  Future<CupertinoLocalizations> load(Locale locale) =>
+      SynchronousFuture<CupertinoLocalizations>(
+        const DefaultCupertinoLocalizations(),
+      );
+
+  @override
+  bool shouldReload(FallbackCupertinoLocalizationDelegate old) => false;
+}
+
 class FFLocalizationsDelegate extends LocalizationsDelegate<FFLocalizations> {
   const FFLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) {
-    final language = locale.toString();
-    return FFLocalizations.languages().contains(
-      language.endsWith('_')
-          ? language.substring(0, language.length - 1)
-          : language,
-    );
-  }
+  bool isSupported(Locale locale) => _isSupportedLocale(locale);
 
   @override
   Future<FFLocalizations> load(Locale locale) =>
@@ -105,6 +135,15 @@ Locale createLocale(String language) => language.contains('_')
         scriptCode: language.split('_').last,
       )
     : Locale(language);
+
+bool _isSupportedLocale(Locale locale) {
+  final language = locale.toString();
+  return FFLocalizations.languages().contains(
+    language.endsWith('_')
+        ? language.substring(0, language.length - 1)
+        : language,
+  );
+}
 
 final kTranslationsMap = <Map<String, Map<String, String>>>[
   // dashboard_screen
@@ -454,6 +493,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // personal_details_screen
   {
+    'xixf5l8f': {
+      'en': 'Option 1',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '603j649y': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
     'p8nxyfu8': {
       'en': 'Tax Type',
       'ar': '',
@@ -492,6 +543,54 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'h4akqgwv': {
       'en': 'Other NRI',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'rjfunfhv': {
+      'en': 'Field is required',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'qg46voeh': {
+      'en': 'Please choose an option from the dropdown',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'zdcorn8l': {
+      'en': 'Field is required',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '4oq0ny3z': {
+      'en': 'Please choose an option from the dropdown',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'trnvqs7u': {
+      'en': 'Field is required',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'hn8znx4u': {
+      'en': 'Please choose an option from the dropdown',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'ho18gxz2': {
+      'en': 'Field is required',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'k80y86yl': {
+      'en': 'Please choose an option from the dropdown',
       'ar': '',
       'de': '',
       'es': '',
@@ -599,6 +698,66 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': '',
     },
     'deuw0um1': {
+      'en': 'Home',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // text_saving_screen
+  {
+    'ydyghz4a': {
+      'en': 'Write a name for Tax saving plan.',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'n27z5p4r': {
+      'en': 'Name is required',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '5hxxa25i': {
+      'en': 'Please choose an option from the dropdown',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    't36ufelx': {
+      'en': ' ',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '8u07mbyq': {
+      'en': 'Home',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // text_saving_questions_screen
+  {
+    '9xrwcs00': {
+      'en': 'Name is required',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'priw6mk8': {
+      'en': 'Please choose an option from the dropdown',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'w6dstkck': {
+      'en': ' ',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'or9n97b1': {
       'en': 'Home',
       'ar': '',
       'de': '',
@@ -715,12 +874,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
-    'sas7gor9': {
-      'en': '12/01/2024\t',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
     'axs5by4i': {
       'en': 'Portfolio',
       'ar': '',
@@ -734,31 +887,13 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': '',
     },
     'q9brrqkk': {
-      'en': 'Return\nPerformance',
+      'en': 'Performance',
       'ar': '',
       'de': '',
       'es': '',
     },
-    'q2lyvn90': {
-      'en': '1st Week\t',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'ty0zuspy': {
-      'en': '15 Days\t',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'f6qoqzsg': {
-      'en': '1 Month\t',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    '189bhi84': {
-      'en': '3 Month\t',
+    '6e717uf0': {
+      'en': '1 Year',
       'ar': '',
       'de': '',
       'es': '',
@@ -769,8 +904,26 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
-    '6e717uf0': {
-      'en': '1 Year',
+    '189bhi84': {
+      'en': '3 Month\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'f6qoqzsg': {
+      'en': '1 Month\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'ty0zuspy': {
+      'en': '15 Days\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'q2lyvn90': {
+      'en': '1st Week\t',
       'ar': '',
       'de': '',
       'es': '',
@@ -794,7 +947,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': '',
     },
     '7uhv5pab': {
-      'en': 'Target',
+      'en': 'XIRR',
       'ar': '',
       'de': '',
       'es': '',
@@ -844,16 +997,16 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
-    'j1odlb89': {
+  },
+  // pf_filters
+  {
+    '9606jvtl': {
       'en': 'Filters',
       'ar': '',
       'de': '',
       'es': '',
     },
-  },
-  // pf_filters
-  {
-    'zxcf4vcy': {
+    '23mbnyma': {
       'en': 'Applicant',
       'ar': '',
       'de': '',
@@ -891,6 +1044,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'u69909x8': {
       'en': 'US PFIC',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '4jyp6nyx': {
+      'en': 'All',
       'ar': '',
       'de': '',
       'es': '',
@@ -943,6 +1102,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
+    'nlk8y97j': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
     'iau4r46d': {
       'en': 'Search for an item...',
       'ar': '',
@@ -951,12 +1116,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'dofqtu08': {
       'en': 'Category',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'vdjzjp10': {
-      'en': 'All',
       'ar': '',
       'de': '',
       'es': '',
@@ -993,6 +1152,379 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'nmeuniew': {
       'en': 'EndDate',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'yo8bhhik': {
+      'en': 'Non-zero folios',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'wvy2ptbd': {
+      'en': 'All folios',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // risk_component
+  {
+    '3ogrd2a8': {
+      'en': 'Risk Score',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // portfolio_list
+  {
+    '9uo2bse6': {
+      'en': 'Current Value(INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '1f45x5u5': {
+      'en': 'Gain(INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'fp9yhfnk': {
+      'en': 'XIRR%',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'g46rti3z': {
+      'en': 'Folio Number',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'ai2gf40k': {
+      'en': 'Opening Balance',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '54vfo8xn': {
+      'en': 'Purchase(INR)\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'bts3k5sc': {
+      'en': 'Switch In(INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '46ttf0hk': {
+      'en': 'Switch Out(INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '6rk9rbqb': {
+      'en': 'Switch Out(INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'xvl3ffqi': {
+      'en': 'Balance Unit\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'clmtslgv': {
+      'en': 'Current Value(INR)\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'cx6gqce1': {
+      'en': 'Gain(INR)\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '6emn13ly': {
+      'en': 'Absolute Gain(%)\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '5shkv1q7': {
+      'en': 'XIRR %\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'gnej4j9j': {
+      'en': 'BUY MORE',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '8fwu5qlw': {
+      'en': 'REEDEM',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'b8ydfx08': {
+      'en': 'SWITCH',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'ejydjip0': {
+      'en': 'SIP',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '9i6ikr0e': {
+      'en': 'STP',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '4yizx5rd': {
+      'en': 'SWP',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'p5c7qduf': {
+      'en': 'Total',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'ni85auhz': {
+      'en': 'Current Value(INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '5mvw9al9': {
+      'en': 'Gain(INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '15wiba3w': {
+      'en': 'XIRR%',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // goal_card
+  {
+    'weujmlhs': {
+      'en': 'Tax Saving 123',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'x4k1g3gz': {
+      'en':
+          'Save up to Rs. 45,000 in taxes by investing into the best tax saving funds, backed by our research',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // trend_analysis_screen
+  {
+    'lug01lmo': {
+      'en': 'Frequency',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'pkgcqiyg': {
+      'en': 'Annual',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'c86d85a7': {
+      'en': 'Weekly',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '6zizjdcb': {
+      'en': 'Monthly',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '9eu8thz6': {
+      'en': 'Annual',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'xx79eyy3': {
+      'en': '',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'qdoxxyct': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'fijnlrvb': {
+      'en': 'Goal Wise',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '5nbre0fk': {
+      'en': '',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'mcp5akhp': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'nfdqm1te': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // portfolio_allocation_screen
+  {
+    'ryahyehi': {
+      'en': 'Goal',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '0hc0ofk9': {
+      'en': '',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'h1otyq52': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '4dgpdz1c': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'dfht33wy': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // three_header_table
+  {
+    'hvtcuc4q': {
+      'en': 'Total',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // debt_wise
+  {
+    'hr2leg8k': {
+      'en': 'Debt',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'tjzmgl0h': {
+      'en': 'Scheme Name',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '7qmxknys': {
+      'en': 'Amount (INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'ix8jllcy': {
+      'en': '% Share',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'q7it9m5g': {
+      'en': 'SubTotal',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'nynog3am': {
+      'en': 'Total',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // equity_wise
+  {
+    '9cf5spvr': {
+      'en': 'Equity',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'h43f3250': {
+      'en': 'Scheme Name',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '4ovt0tt5': {
+      'en': 'Amount (INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'pv2r4kh7': {
+      'en': '% Share',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'n46abv39': {
+      'en': 'SubTotal',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'nbbyzjm5': {
+      'en': 'Total',
       'ar': '',
       'de': '',
       'es': '',

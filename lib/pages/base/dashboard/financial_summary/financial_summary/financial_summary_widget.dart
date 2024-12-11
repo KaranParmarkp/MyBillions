@@ -31,7 +31,7 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
     super.initState();
     _model = createModel(context, () => FinancialSummaryModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -64,6 +64,7 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
             );
           }
           final financialSummerDashboardResponse = snapshot.data!;
+
           return SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -124,6 +125,7 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                 .toList()),
                                         formatType: FormatType.decimal,
                                         decimalType: DecimalType.automatic,
+                                        currency: '₹',
                                       ),
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
@@ -132,6 +134,16 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMediumFamily,
+                                            color: functions
+                                                .checkPositiveValueColor(
+                                                    functions.sumOfDoubleList(
+                                                        MyBillionsApiGroupGroup
+                                                            .dashboardCall
+                                                            .currentAmountList(
+                                                              financialSummerDashboardResponse
+                                                                  .jsonBody,
+                                                            )!
+                                                            .toList())),
                                             fontSize: 12.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
@@ -185,17 +197,21 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Text(
-                                      formatNumber(
-                                        functions.sumOfDoubleList(
-                                            MyBillionsApiGroupGroup
-                                                .dashboardCall
-                                                .appreciationList(
-                                                  financialSummerDashboardResponse
-                                                      .jsonBody,
-                                                )!
-                                                .toList()),
-                                        formatType: FormatType.decimal,
-                                        decimalType: DecimalType.automatic,
+                                      valueOrDefault<String>(
+                                        formatNumber(
+                                          functions.sumOfDoubleList(
+                                              MyBillionsApiGroupGroup
+                                                  .dashboardCall
+                                                  .appreciationList(
+                                                    financialSummerDashboardResponse
+                                                        .jsonBody,
+                                                  )!
+                                                  .toList()),
+                                          formatType: FormatType.decimal,
+                                          decimalType: DecimalType.automatic,
+                                          currency: '₹',
+                                        ),
+                                        '0',
                                       ),
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
@@ -204,8 +220,16 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                             fontFamily:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMediumFamily,
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
+                                            color: functions
+                                                .checkPositiveValueColor(
+                                                    functions.sumOfDoubleList(
+                                                        MyBillionsApiGroupGroup
+                                                            .dashboardCall
+                                                            .appreciationList(
+                                                              financialSummerDashboardResponse
+                                                                  .jsonBody,
+                                                            )!
+                                                            .toList())),
                                             fontSize: 12.0,
                                             letterSpacing: 0.0,
                                             fontWeight: FontWeight.w600,
@@ -340,6 +364,7 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                     }
                     final performanceCardPerformanceReportDataResponse =
                         snapshot.data!;
+
                     return Container(
                       decoration: BoxDecoration(),
                       child: Padding(
@@ -411,10 +436,13 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                             alignment:
                                                 AlignmentDirectional(0.0, 0.0),
                                             child: Text(
-                                              FFLocalizations.of(context)
-                                                  .getText(
-                                                'sas7gor9' /* 12/01/2024	 */,
-                                              ),
+                                              functions.formateStringToDate(
+                                                  MyBillionsApiGroupGroup
+                                                      .performanceReportDataCall
+                                                      .evalDate(
+                                                performanceCardPerformanceReportDataResponse
+                                                    .jsonBody,
+                                              )),
                                               textAlign: TextAlign.center,
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -424,6 +452,9 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .bodyMediumFamily,
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .primaryBackground,
                                                         fontSize: 14.0,
                                                         letterSpacing: 0.0,
                                                         useGoogleFonts: GoogleFonts
@@ -509,9 +540,7 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'q9brrqkk' /* Return
-Performance */
-                                                ,
+                                                'q9brrqkk' /* Performance */,
                                               ),
                                               textAlign: TextAlign.center,
                                               style:
@@ -550,7 +579,17 @@ Performance */
                                           children: [
                                             Container(
                                               width: 100.0,
-                                              decoration: BoxDecoration(),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                  bottomLeft:
+                                                      Radius.circular(0.0),
+                                                  bottomRight:
+                                                      Radius.circular(0.0),
+                                                  topLeft: Radius.circular(0.0),
+                                                  topRight:
+                                                      Radius.circular(12.0),
+                                                ),
+                                              ),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
@@ -571,7 +610,7 @@ Performance */
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                          'q2lyvn90' /* 1st Week	 */,
+                                                          '6e717uf0' /* 1 Year */,
                                                         ),
                                                         textAlign:
                                                             TextAlign.center,
@@ -583,6 +622,9 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -604,32 +646,41 @@ Performance */
                                                           AlignmentDirectional(
                                                               0.0, 0.0),
                                                       child: Text(
-                                                        valueOrDefault<String>(
-                                                          functions
-                                                              .doubleToStringFixed(
-                                                                  2,
-                                                                  valueOrDefault<
-                                                                      double>(
+                                                        functions
+                                                            .doubleToStringFixed(
+                                                                2,
+                                                                valueOrDefault<
+                                                                    double>(
+                                                                  MyBillionsApiGroupGroup
+                                                                      .performanceReportDataCall
+                                                                      .portfolioYear(
+                                                                    performanceCardPerformanceReportDataResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  0.0,
+                                                                )),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
                                                                     MyBillionsApiGroupGroup
                                                                         .performanceReportDataCall
-                                                                        .portfolioWeek(
+                                                                        .portfolioYear(
                                                                       performanceCardPerformanceReportDataResponse
                                                                           .jsonBody,
                                                                     ),
                                                                     0.0,
                                                                   )),
-                                                          '0',
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -658,7 +709,7 @@ Performance */
                                                                     double>(
                                                                   MyBillionsApiGroupGroup
                                                                       .performanceReportDataCall
-                                                                      .niftyWeek(
+                                                                      .nifty1Year(
                                                                     performanceCardPerformanceReportDataResponse
                                                                         .jsonBody,
                                                                   ),
@@ -674,6 +725,18 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .nifty1Year(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -702,7 +765,7 @@ Performance */
                                                                     double>(
                                                                   MyBillionsApiGroupGroup
                                                                       .performanceReportDataCall
-                                                                      .returnPerf1Week(
+                                                                      .returnPerf1Year(
                                                                     performanceCardPerformanceReportDataResponse
                                                                         .jsonBody,
                                                                   ),
@@ -718,555 +781,18 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Container(
-                                              width: 100.0,
-                                              decoration: BoxDecoration(),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Container(
-                                                    width: 100.0,
-                                                    height: 50.0,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'ty0zuspy' /* 15 Days	 */,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 40.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        functions
-                                                            .doubleToStringFixed(
-                                                                2,
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MyBillionsApiGroupGroup
-                                                                      .performanceReportDataCall
-                                                                      .portfolio15Days(
-                                                                    performanceCardPerformanceReportDataResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  0.0,
-                                                                )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 40.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        functions
-                                                            .doubleToStringFixed(
-                                                                2,
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MyBillionsApiGroupGroup
-                                                                      .performanceReportDataCall
-                                                                      .nifty15Days(
-                                                                    performanceCardPerformanceReportDataResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  0.0,
-                                                                )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 40.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        functions
-                                                            .doubleToStringFixed(
-                                                                2,
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MyBillionsApiGroupGroup
-                                                                      .performanceReportDataCall
-                                                                      .returnPerf15Days(
-                                                                    performanceCardPerformanceReportDataResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  0.0,
-                                                                )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Container(
-                                              width: 100.0,
-                                              decoration: BoxDecoration(),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Container(
-                                                    width: 100.0,
-                                                    height: 50.0,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          'f6qoqzsg' /* 1 Month	 */,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 40.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        functions
-                                                            .doubleToStringFixed(
-                                                                2,
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MyBillionsApiGroupGroup
-                                                                      .performanceReportDataCall
-                                                                      .portfolio1stMonth(
-                                                                    performanceCardPerformanceReportDataResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  0.0,
-                                                                )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 40.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        functions
-                                                            .doubleToStringFixed(
-                                                                2,
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MyBillionsApiGroupGroup
-                                                                      .performanceReportDataCall
-                                                                      .nifty1Month(
-                                                                    performanceCardPerformanceReportDataResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  0.0,
-                                                                )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 40.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        functions
-                                                            .doubleToStringFixed(
-                                                                2,
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MyBillionsApiGroupGroup
-                                                                      .performanceReportDataCall
-                                                                      .returnPerf1Month(
-                                                                    performanceCardPerformanceReportDataResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  0.0,
-                                                                )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Container(
-                                              width: 100.0,
-                                              decoration: BoxDecoration(),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: [
-                                                  Container(
-                                                    width: 100.0,
-                                                    height: 50.0,
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondary,
-                                                    ),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        FFLocalizations.of(
-                                                                context)
-                                                            .getText(
-                                                          '189bhi84' /* 3 Month	 */,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 40.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        functions
-                                                            .doubleToStringFixed(
-                                                                2,
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MyBillionsApiGroupGroup
-                                                                      .performanceReportDataCall
-                                                                      .portfolio3Month(
-                                                                    performanceCardPerformanceReportDataResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  0.0,
-                                                                )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 40.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        functions
-                                                            .doubleToStringFixed(
-                                                                2,
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MyBillionsApiGroupGroup
-                                                                      .performanceReportDataCall
-                                                                      .nifty3Month(
-                                                                    performanceCardPerformanceReportDataResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  0.0,
-                                                                )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
-                                                                  fontSize:
-                                                                      14.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  useGoogleFonts: GoogleFonts
-                                                                          .asMap()
-                                                                      .containsKey(
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily),
-                                                                ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Container(
-                                                    height: 40.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Align(
-                                                      alignment:
-                                                          AlignmentDirectional(
-                                                              0.0, 0.0),
-                                                      child: Text(
-                                                        functions
-                                                            .doubleToStringFixed(
-                                                                2,
-                                                                valueOrDefault<
-                                                                    double>(
-                                                                  MyBillionsApiGroupGroup
-                                                                      .performanceReportDataCall
-                                                                      .returnPerf3Month(
-                                                                    performanceCardPerformanceReportDataResponse
-                                                                        .jsonBody,
-                                                                  ),
-                                                                  0.0,
-                                                                )),
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  fontFamily: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .returnPerf1Year(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1318,6 +844,9 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1362,6 +891,18 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .portfolio6Month(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1406,6 +947,18 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .nifty6Month(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1450,6 +1003,18 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .returnPerf6Month(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1468,17 +1033,7 @@ Performance */
                                             ),
                                             Container(
                                               width: 100.0,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.only(
-                                                  bottomLeft:
-                                                      Radius.circular(0.0),
-                                                  bottomRight:
-                                                      Radius.circular(0.0),
-                                                  topLeft: Radius.circular(0.0),
-                                                  topRight:
-                                                      Radius.circular(12.0),
-                                                ),
-                                              ),
+                                              decoration: BoxDecoration(),
                                               child: Column(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
@@ -1499,7 +1054,7 @@ Performance */
                                                         FFLocalizations.of(
                                                                 context)
                                                             .getText(
-                                                          '6e717uf0' /* 1 Year */,
+                                                          '189bhi84' /* 3 Month	 */,
                                                         ),
                                                         textAlign:
                                                             TextAlign.center,
@@ -1511,6 +1066,9 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1539,7 +1097,7 @@ Performance */
                                                                     double>(
                                                                   MyBillionsApiGroupGroup
                                                                       .performanceReportDataCall
-                                                                      .portfolioYear(
+                                                                      .portfolio3Month(
                                                                     performanceCardPerformanceReportDataResponse
                                                                         .jsonBody,
                                                                   ),
@@ -1555,6 +1113,18 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .portfolio3Month(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1583,7 +1153,7 @@ Performance */
                                                                     double>(
                                                                   MyBillionsApiGroupGroup
                                                                       .performanceReportDataCall
-                                                                      .nifty1Year(
+                                                                      .nifty3Month(
                                                                     performanceCardPerformanceReportDataResponse
                                                                         .jsonBody,
                                                                   ),
@@ -1599,6 +1169,18 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .nifty3Month(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1627,7 +1209,7 @@ Performance */
                                                                     double>(
                                                                   MyBillionsApiGroupGroup
                                                                       .performanceReportDataCall
-                                                                      .returnPerf1Year(
+                                                                      .returnPerf3Month(
                                                                     performanceCardPerformanceReportDataResponse
                                                                         .jsonBody,
                                                                   ),
@@ -1643,6 +1225,687 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .returnPerf3Month(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 100.0,
+                                              decoration: BoxDecoration(),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Container(
+                                                    width: 100.0,
+                                                    height: 50.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'f6qoqzsg' /* 1 Month	 */,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        functions
+                                                            .doubleToStringFixed(
+                                                                2,
+                                                                valueOrDefault<
+                                                                    double>(
+                                                                  MyBillionsApiGroupGroup
+                                                                      .performanceReportDataCall
+                                                                      .portfolio1stMonth(
+                                                                    performanceCardPerformanceReportDataResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  0.0,
+                                                                )),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .portfolio1stMonth(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        functions
+                                                            .doubleToStringFixed(
+                                                                2,
+                                                                valueOrDefault<
+                                                                    double>(
+                                                                  MyBillionsApiGroupGroup
+                                                                      .performanceReportDataCall
+                                                                      .nifty1Month(
+                                                                    performanceCardPerformanceReportDataResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  0.0,
+                                                                )),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .nifty1Month(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        functions
+                                                            .doubleToStringFixed(
+                                                                2,
+                                                                valueOrDefault<
+                                                                    double>(
+                                                                  MyBillionsApiGroupGroup
+                                                                      .performanceReportDataCall
+                                                                      .returnPerf1Month(
+                                                                    performanceCardPerformanceReportDataResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  0.0,
+                                                                )),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .returnPerf1Month(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 100.0,
+                                              decoration: BoxDecoration(),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Container(
+                                                    width: 100.0,
+                                                    height: 50.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'ty0zuspy' /* 15 Days	 */,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        functions
+                                                            .doubleToStringFixed(
+                                                                2,
+                                                                valueOrDefault<
+                                                                    double>(
+                                                                  MyBillionsApiGroupGroup
+                                                                      .performanceReportDataCall
+                                                                      .portfolio15Days(
+                                                                    performanceCardPerformanceReportDataResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  0.0,
+                                                                )),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .portfolio15Days(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        functions
+                                                            .doubleToStringFixed(
+                                                                2,
+                                                                valueOrDefault<
+                                                                    double>(
+                                                                  MyBillionsApiGroupGroup
+                                                                      .performanceReportDataCall
+                                                                      .nifty15Days(
+                                                                    performanceCardPerformanceReportDataResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  0.0,
+                                                                )),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .nifty15Days(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        functions
+                                                            .doubleToStringFixed(
+                                                                2,
+                                                                valueOrDefault<
+                                                                    double>(
+                                                                  MyBillionsApiGroupGroup
+                                                                      .performanceReportDataCall
+                                                                      .returnPerf15Days(
+                                                                    performanceCardPerformanceReportDataResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  0.0,
+                                                                )),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .returnPerf15Days(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              width: 100.0,
+                                              decoration: BoxDecoration(),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Container(
+                                                    width: 100.0,
+                                                    height: 50.0,
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .secondary,
+                                                    ),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        FFLocalizations.of(
+                                                                context)
+                                                            .getText(
+                                                          'q2lyvn90' /* 1st Week	 */,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryBackground,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        valueOrDefault<String>(
+                                                          functions
+                                                              .doubleToStringFixed(
+                                                                  2,
+                                                                  valueOrDefault<
+                                                                      double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .portfolioWeek(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                          '0',
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .portfolioWeek(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        functions
+                                                            .doubleToStringFixed(
+                                                                2,
+                                                                valueOrDefault<
+                                                                    double>(
+                                                                  MyBillionsApiGroupGroup
+                                                                      .performanceReportDataCall
+                                                                      .niftyWeek(
+                                                                    performanceCardPerformanceReportDataResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  0.0,
+                                                                )),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .niftyWeek(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .bodyMediumFamily),
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 40.0,
+                                                    decoration: BoxDecoration(),
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Text(
+                                                        functions
+                                                            .doubleToStringFixed(
+                                                                2,
+                                                                valueOrDefault<
+                                                                    double>(
+                                                                  MyBillionsApiGroupGroup
+                                                                      .performanceReportDataCall
+                                                                      .returnPerf1Week(
+                                                                    performanceCardPerformanceReportDataResponse
+                                                                        .jsonBody,
+                                                                  ),
+                                                                  0.0,
+                                                                )),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    MyBillionsApiGroupGroup
+                                                                        .performanceReportDataCall
+                                                                        .returnPerf1Week(
+                                                                      performanceCardPerformanceReportDataResponse
+                                                                          .jsonBody,
+                                                                    ),
+                                                                    0.0,
+                                                                  )),
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1706,6 +1969,7 @@ Performance */
                                         )
                                         ?.toList() ??
                                     [];
+
                             return ListView.builder(
                               padding: EdgeInsets.zero,
                               primary: false,
@@ -1787,8 +2051,9 @@ Performance */
                                                     children: [
                                                       Text(
                                                         formatNumber(
-                                                          functions.toDouble(
-                                                              getJsonField(
+                                                          functions
+                                                              .toDoubleRound(
+                                                                  getJsonField(
                                                             goalsListviewItem,
                                                             r'''$.CurrentAmount''',
                                                           ).toString()),
@@ -1797,6 +2062,7 @@ Performance */
                                                           decimalType:
                                                               DecimalType
                                                                   .automatic,
+                                                          currency: '₹',
                                                         ),
                                                         textAlign:
                                                             TextAlign.center,
@@ -1880,8 +2146,9 @@ Performance */
                                                     children: [
                                                       Text(
                                                         formatNumber(
-                                                          functions.toDouble(
-                                                              getJsonField(
+                                                          functions
+                                                              .toDoubleRound(
+                                                                  getJsonField(
                                                             goalsListviewItem,
                                                             r'''$.Appreciation''',
                                                           ).toString()),
@@ -1890,6 +2157,7 @@ Performance */
                                                           decimalType:
                                                               DecimalType
                                                                   .automatic,
+                                                          currency: '₹',
                                                         ),
                                                         textAlign:
                                                             TextAlign.center,
@@ -1901,9 +2169,12 @@ Performance */
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryText,
+                                                                  color: functions.checkPositiveValueColor(functions
+                                                                      .toDoubleRound(getJsonField(
+                                                                        goalsListviewItem,
+                                                                        r'''$.Appreciation''',
+                                                                      ).toString())
+                                                                      .toDouble()),
                                                                   fontSize:
                                                                       12.0,
                                                                   letterSpacing:
@@ -1975,18 +2246,13 @@ Performance */
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        formatNumber(
-                                                          functions.toDouble(
-                                                              getJsonField(
+                                                        '${valueOrDefault<String>(
+                                                          getJsonField(
                                                             goalsListviewItem,
-                                                            r'''$.FutureValue''',
-                                                          ).toString()),
-                                                          formatType: FormatType
-                                                              .decimal,
-                                                          decimalType:
-                                                              DecimalType
-                                                                  .automatic,
-                                                        ),
+                                                            r'''$.XIIRPercentage''',
+                                                          )?.toString(),
+                                                          '0',
+                                                        )}%',
                                                         textAlign:
                                                             TextAlign.center,
                                                         style:
@@ -2023,7 +2289,7 @@ Performance */
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            '7uhv5pab' /* Target */,
+                                                            '7uhv5pab' /* XIRR */,
                                                           ),
                                                           textAlign:
                                                               TextAlign.center,

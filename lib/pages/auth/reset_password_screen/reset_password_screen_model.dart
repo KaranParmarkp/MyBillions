@@ -16,7 +16,6 @@ class ResetPasswordScreenModel
     extends FlutterFlowModel<ResetPasswordScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for app_bg_new component.
   late AppBgNewModel appBgNewModel;
@@ -44,16 +43,16 @@ class ResetPasswordScreenModel
     confNewPasswordModel = createModel(context, () => AppTextfieldModel());
     appButtonModel1 = createModel(context, () => AppButtonModel());
     appButtonModel2 = createModel(context, () => AppButtonModel());
-
-    securityCodeModel.textfieldControllerValidator = _formTextFieldValidator1;
-    newPasswordModel.textfieldControllerValidator = _formTextFieldValidator2;
-    confNewPasswordModel.textfieldControllerValidator =
+    securityCodeModel.textfieldTextControllerValidator =
+        _formTextFieldValidator1;
+    newPasswordModel.textfieldTextControllerValidator =
+        _formTextFieldValidator2;
+    confNewPasswordModel.textfieldTextControllerValidator =
         _formTextFieldValidator3;
   }
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     appBgNewModel.dispose();
     appLogoNewModel.dispose();
     securityCodeModel.dispose();

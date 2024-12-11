@@ -36,7 +36,7 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
     super.initState();
     _model = createModel(context, () => ResetPasswordScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -49,9 +49,7 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -59,7 +57,7 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
           children: [
             wrapWithModel(
               model: _model.appBgNewModel,
-              updateCallback: () => setState(() {}),
+              updateCallback: () => safeSetState(() {}),
               child: AppBgNewWidget(),
             ),
             Container(
@@ -79,7 +77,7 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                         alignment: AlignmentDirectional(0.0, 0.0),
                         child: wrapWithModel(
                           model: _model.appLogoNewModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: AppLogoNewWidget(
                             showPadding: true,
                           ),
@@ -117,7 +115,7 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                       ),
                       wrapWithModel(
                         model: _model.securityCodeModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         child: AppTextfieldWidget(
                           hint: 'Enter security code',
                           label: 'Security code',
@@ -125,7 +123,7 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                       ),
                       wrapWithModel(
                         model: _model.newPasswordModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         child: AppTextfieldWidget(
                           hint: 'Enter new password',
                           label: 'New password',
@@ -133,7 +131,7 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                       ),
                       wrapWithModel(
                         model: _model.confNewPasswordModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         child: AppTextfieldWidget(
                           hint: 'Enter confirm new password',
                           label: 'Confirm new password',
@@ -148,10 +146,10 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                                   0.0, 0.0, 10.0, 0.0),
                               child: wrapWithModel(
                                 model: _model.appButtonModel1,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: AppButtonWidget(
                                   title: 'Cancel',
-                                  onTap: () async {
+                                  onButtonTap: () async {
                                     context.safePop();
                                   },
                                 ),
@@ -164,19 +162,19 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                                   10.0, 0.0, 0.0, 0.0),
                               child: wrapWithModel(
                                 model: _model.appButtonModel2,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: AppButtonWidget(
                                   title: 'Submit',
-                                  onTap: () async {
+                                  onButtonTap: () async {
                                     if (_model.formKey.currentState == null ||
                                         !_model.formKey.currentState!
                                             .validate()) {
                                       return;
                                     }
                                     if (_model.newPasswordModel
-                                            .textfieldController.text !=
+                                            .textfieldTextController.text !=
                                         _model.confNewPasswordModel
-                                            .textfieldController.text) {
+                                            .textfieldTextController.text) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -201,11 +199,12 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                                               .resetPasswordCall
                                               .call(
                                         securitycode: _model.securityCodeModel
-                                            .textfieldController.text,
-                                        email: widget.email,
+                                            .textfieldTextController.text,
+                                        email: widget!.email,
                                         newPassword: _model.newPasswordModel
-                                            .textfieldController.text,
+                                            .textfieldTextController.text,
                                       );
+
                                       if (MyBillionsApiGroupGroup
                                               .resetPasswordCall
                                               .responseCode(
@@ -268,7 +267,7 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                                       }
                                     }
 
-                                    setState(() {});
+                                    safeSetState(() {});
                                   },
                                 ),
                               ),

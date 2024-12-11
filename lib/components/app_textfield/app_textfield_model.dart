@@ -11,8 +11,8 @@ class AppTextfieldModel extends FlutterFlowModel<AppTextfieldWidget> {
 
   // State field(s) for textfield widget.
   FocusNode? textfieldFocusNode;
-  TextEditingController? textfieldController;
-  String? Function(BuildContext, String?)? textfieldControllerValidator;
+  TextEditingController? textfieldTextController;
+  String? Function(BuildContext, String?)? textfieldTextControllerValidator;
 
   @override
   void initState(BuildContext context) {}
@@ -20,6 +20,6 @@ class AppTextfieldModel extends FlutterFlowModel<AppTextfieldWidget> {
   @override
   void dispose() {
     textfieldFocusNode?.dispose();
-    textfieldController?.dispose();
+    textfieldTextController?.dispose();
   }
 }

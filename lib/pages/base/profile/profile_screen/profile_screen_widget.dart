@@ -28,7 +28,7 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
     super.initState();
     _model = createModel(context, () => ProfileScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -41,9 +41,7 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -56,7 +54,7 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
               children: [
                 wrapWithModel(
                   model: _model.appBgModel,
-                  updateCallback: () => setState(() {}),
+                  updateCallback: () => safeSetState(() {}),
                   child: AppBgWidget(),
                 ),
                 Padding(
@@ -66,7 +64,7 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                     children: [
                       wrapWithModel(
                         model: _model.appbarLogoModel,
-                        updateCallback: () => setState(() {}),
+                        updateCallback: () => safeSetState(() {}),
                         child: AppbarLogoWidget(),
                       ),
                       Expanded(

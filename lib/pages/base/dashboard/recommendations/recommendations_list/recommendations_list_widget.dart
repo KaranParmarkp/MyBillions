@@ -34,7 +34,7 @@ class _RecommendationsListWidgetState extends State<RecommendationsListWidget> {
     super.initState();
     _model = createModel(context, () => RecommendationsListModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -67,6 +67,7 @@ class _RecommendationsListWidgetState extends State<RecommendationsListWidget> {
           );
         }
         final listViewRecommendationsDataResponse = snapshot.data!;
+
         return Builder(
           builder: (context) {
             final recList = MyBillionsApiGroupGroup.recommendationsDataCall
@@ -75,11 +76,12 @@ class _RecommendationsListWidgetState extends State<RecommendationsListWidget> {
                     )
                     ?.toList() ??
                 [];
+
             return RefreshIndicator(
               color: FlutterFlowTheme.of(context).secondary,
               backgroundColor: FlutterFlowTheme.of(context).background,
               onRefresh: () async {
-                setState(() => _model.apiRequestCompleter = null);
+                safeSetState(() => _model.apiRequestCompleter = null);
                 await _model.waitForApiRequestCompleted();
               },
               child: ListView.builder(

@@ -31,13 +31,13 @@ class CustomAuthManager {
     uid = null;
     userData = null;
     // Update the current user.
-    myBillionsAppKPAuthUserSubject.add(
-      MyBillionsAppKPAuthUser(loggedIn: false),
+    myFlutterAppKPAuthUserSubject.add(
+      MyFlutterAppKPAuthUser(loggedIn: false),
     );
     persistAuthData();
   }
 
-  Future<MyBillionsAppKPAuthUser?> signIn({
+  Future<MyFlutterAppKPAuthUser?> signIn({
     String? authenticationToken,
     String? refreshToken,
     DateTime? tokenExpiration,
@@ -73,7 +73,7 @@ class CustomAuthManager {
     );
   }
 
-  MyBillionsAppKPAuthUser? _updateCurrentUser({
+  MyFlutterAppKPAuthUser? _updateCurrentUser({
     String? authenticationToken,
     String? refreshToken,
     DateTime? tokenExpiration,
@@ -86,12 +86,12 @@ class CustomAuthManager {
     this.uid = authUid;
     this.userData = userData;
     // Update the current user stream.
-    final updatedUser = MyBillionsAppKPAuthUser(
+    final updatedUser = MyFlutterAppKPAuthUser(
       loggedIn: true,
       uid: authUid,
       userData: userData,
     );
-    myBillionsAppKPAuthUserSubject.add(updatedUser);
+    myFlutterAppKPAuthUserSubject.add(updatedUser);
     persistAuthData();
     return updatedUser;
   }
@@ -124,12 +124,12 @@ class CustomAuthManager {
     final authTokenExists = authenticationToken != null;
     final tokenExpired =
         tokenExpiration != null && tokenExpiration!.isBefore(DateTime.now());
-    final updatedUser = MyBillionsAppKPAuthUser(
+    final updatedUser = MyFlutterAppKPAuthUser(
       loggedIn: authTokenExists && !tokenExpired,
       uid: uid,
       userData: userData,
     );
-    myBillionsAppKPAuthUserSubject.add(updatedUser);
+    myFlutterAppKPAuthUserSubject.add(updatedUser);
   }
 
   void persistAuthData() {
@@ -151,5 +151,5 @@ class CustomAuthManager {
   }
 }
 
-MyBillionsAppKPAuthUser? currentUser;
+MyFlutterAppKPAuthUser? currentUser;
 bool get loggedIn => currentUser?.loggedIn ?? false;

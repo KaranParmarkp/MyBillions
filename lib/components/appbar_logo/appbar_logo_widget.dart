@@ -29,7 +29,7 @@ class _AppbarLogoWidgetState extends State<AppbarLogoWidget> {
     super.initState();
     _model = createModel(context, () => AppbarLogoModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -52,7 +52,7 @@ class _AppbarLogoWidgetState extends State<AppbarLogoWidget> {
               Expanded(
                 child: wrapWithModel(
                   model: _model.appLogoNew2Model,
-                  updateCallback: () => setState(() {}),
+                  updateCallback: () => safeSetState(() {}),
                   child: AppLogoNew2Widget(
                     showPadding: false,
                   ),

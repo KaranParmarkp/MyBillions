@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/components/app_bg/app_bg_widget.dart';
 import '/components/app_logo_new_2/app_logo_new2_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -8,6 +9,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/pages/base/dashboard/financial_summary/financial_summary/financial_summary_widget.dart';
 import '/pages/base/dashboard/recommendations/recommendations_list/recommendations_list_widget.dart';
 import '/pages/base/dashboard/reports/reports/reports_widget.dart';
+import '/pages/base/dashboard/trent_analysis/trend_analysis_screen/trend_analysis_screen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,7 +34,7 @@ class _DashboardScreenWidgetState extends State<DashboardScreenWidget> {
     super.initState();
     _model = createModel(context, () => DashboardScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -45,9 +47,7 @@ class _DashboardScreenWidgetState extends State<DashboardScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -60,7 +60,7 @@ class _DashboardScreenWidgetState extends State<DashboardScreenWidget> {
               children: [
                 wrapWithModel(
                   model: _model.appBgModel,
-                  updateCallback: () => setState(() {}),
+                  updateCallback: () => safeSetState(() {}),
                   child: AppBgWidget(),
                 ),
                 Container(
@@ -85,7 +85,7 @@ class _DashboardScreenWidgetState extends State<DashboardScreenWidget> {
                                   Expanded(
                                     child: wrapWithModel(
                                       model: _model.appLogoNew2Model,
-                                      updateCallback: () => setState(() {}),
+                                      updateCallback: () => safeSetState(() {}),
                                       child: AppLogoNew2Widget(
                                         showPadding: false,
                                       ),
@@ -126,10 +126,9 @@ class _DashboardScreenWidgetState extends State<DashboardScreenWidget> {
                               )
                             ],
                             onChanged: (val) async {
-                              setState(() => _model.dropDownValue = val);
-                              setState(() {
-                                _model.currentSelected = _model.dropDownValue!;
-                              });
+                              safeSetState(() => _model.dropDownValue = val);
+                              _model.currentSelected = _model.dropDownValue!;
+                              safeSetState(() {});
                             },
                             width: double.infinity,
                             height: 40.0,
@@ -166,7 +165,7 @@ class _DashboardScreenWidgetState extends State<DashboardScreenWidget> {
                           Expanded(
                             child: wrapWithModel(
                               model: _model.financialSummaryModel,
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               child: FinancialSummaryWidget(),
                             ),
                           ),
@@ -177,7 +176,7 @@ class _DashboardScreenWidgetState extends State<DashboardScreenWidget> {
                                   20.0, 10.0, 20.0, 0.0),
                               child: wrapWithModel(
                                 model: _model.recommendationsListModel,
-                                updateCallback: () => setState(() {}),
+                                updateCallback: () => safeSetState(() {}),
                                 child: RecommendationsListWidget(),
                               ),
                             ),
@@ -186,8 +185,16 @@ class _DashboardScreenWidgetState extends State<DashboardScreenWidget> {
                           Expanded(
                             child: wrapWithModel(
                               model: _model.reportsModel,
-                              updateCallback: () => setState(() {}),
+                              updateCallback: () => safeSetState(() {}),
                               child: ReportsWidget(),
+                            ),
+                          ),
+                        if (_model.dropDownValue == 'Trend Analysis')
+                          Expanded(
+                            child: wrapWithModel(
+                              model: _model.trendAnalysisScreenModel,
+                              updateCallback: () => safeSetState(() {}),
+                              child: TrendAnalysisScreenWidget(),
                             ),
                           ),
                       ],

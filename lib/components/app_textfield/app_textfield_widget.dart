@@ -13,12 +13,15 @@ class AppTextfieldWidget extends StatefulWidget {
     String? hint,
     String? label,
     this.initialValue,
+    bool? readOnly,
   })  : this.hint = hint ?? ' ',
-        this.label = label ?? ' ';
+        this.label = label ?? ' ',
+        this.readOnly = readOnly ?? false;
 
   final String hint;
   final String label;
   final String? initialValue;
+  final bool readOnly;
 
   @override
   State<AppTextfieldWidget> createState() => _AppTextfieldWidgetState();
@@ -38,11 +41,11 @@ class _AppTextfieldWidgetState extends State<AppTextfieldWidget> {
     super.initState();
     _model = createModel(context, () => AppTextfieldModel());
 
-    _model.textfieldController ??=
-        TextEditingController(text: widget.initialValue);
+    _model.textfieldTextController ??=
+        TextEditingController(text: widget!.initialValue);
     _model.textfieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -57,18 +60,19 @@ class _AppTextfieldWidgetState extends State<AppTextfieldWidget> {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
       child: TextFormField(
-        controller: _model.textfieldController,
+        controller: _model.textfieldTextController,
         focusNode: _model.textfieldFocusNode,
+        readOnly: widget!.readOnly,
         obscureText: false,
         decoration: InputDecoration(
-          labelText: widget.label,
+          labelText: widget!.label,
           labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
                 fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
                 letterSpacing: 0.0,
                 useGoogleFonts: GoogleFonts.asMap()
                     .containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
               ),
-          hintText: widget.hint,
+          hintText: widget!.hint,
           hintStyle: FlutterFlowTheme.of(context).bodySmall.override(
                 fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
                 letterSpacing: 0.0,
@@ -114,9 +118,8 @@ class _AppTextfieldWidgetState extends State<AppTextfieldWidget> {
               useGoogleFonts: GoogleFonts.asMap()
                   .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
             ),
-        minLines: null,
         cursorColor: FlutterFlowTheme.of(context).primaryText,
-        validator: _model.textfieldControllerValidator.asValidator(context),
+        validator: _model.textfieldTextControllerValidator.asValidator(context),
       ),
     );
   }

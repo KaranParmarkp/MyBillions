@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 class ProfileScreenModel extends FlutterFlowModel<ProfileScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for app_bg component.
   late AppBgModel appBgModel;
   // Model for appbar_logo component.
@@ -27,7 +26,6 @@ class ProfileScreenModel extends FlutterFlowModel<ProfileScreenWidget> {
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     appBgModel.dispose();
     appbarLogoModel.dispose();
   }

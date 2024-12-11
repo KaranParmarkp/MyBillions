@@ -34,7 +34,7 @@ class _RecommendationComponentWidgetState
     super.initState();
     _model = createModel(context, () => RecommendationComponentModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -65,6 +65,7 @@ class _RecommendationComponentWidgetState
           );
         }
         final containerRecommendationsDataResponse = snapshot.data!;
+
         return Container(
           width: double.infinity,
           decoration: BoxDecoration(
@@ -78,6 +79,7 @@ class _RecommendationComponentWidgetState
                       )
                       ?.toList() ??
                   [];
+
               return FlutterFlowDataTable<dynamic>(
                 controller: _model.paginatedDataTableController,
                 data: recList,

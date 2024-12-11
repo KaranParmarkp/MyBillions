@@ -33,7 +33,7 @@ class _SignInScreenWidgetState extends State<SignInScreenWidget> {
     super.initState();
     _model = createModel(context, () => SignInScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -46,9 +46,7 @@ class _SignInScreenWidgetState extends State<SignInScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -56,7 +54,7 @@ class _SignInScreenWidgetState extends State<SignInScreenWidget> {
           children: [
             wrapWithModel(
               model: _model.appBgNewModel,
-              updateCallback: () => setState(() {}),
+              updateCallback: () => safeSetState(() {}),
               child: AppBgNewWidget(),
             ),
             Container(
@@ -77,7 +75,7 @@ class _SignInScreenWidgetState extends State<SignInScreenWidget> {
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: wrapWithModel(
                             model: _model.appLogoNewModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: AppLogoNewWidget(
                               showPadding: true,
                             ),
@@ -116,7 +114,7 @@ class _SignInScreenWidgetState extends State<SignInScreenWidget> {
                         ),
                         wrapWithModel(
                           model: _model.emailTexfieldModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: AppTextfieldWidget(
                             hint: 'Enter your email',
                             label: 'Enter email',
@@ -124,7 +122,7 @@ class _SignInScreenWidgetState extends State<SignInScreenWidget> {
                         ),
                         wrapWithModel(
                           model: _model.appTextfieldPassModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: AppTextfieldPassWidget(
                             hint: 'Enter your password',
                             label: 'Enter password',
@@ -177,10 +175,10 @@ class _SignInScreenWidgetState extends State<SignInScreenWidget> {
                                     20.0, 0.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.appButtonModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: AppButtonWidget(
                                     title: 'Login',
-                                    onTap: () async {
+                                    onButtonTap: () async {
                                       Function() _navigate = () {};
                                       if (_model.formKey.currentState == null ||
                                           !_model.formKey.currentState!
@@ -192,10 +190,11 @@ class _SignInScreenWidgetState extends State<SignInScreenWidget> {
                                               .signInCall
                                               .call(
                                         email: _model.emailTexfieldModel
-                                            .textfieldController.text,
+                                            .textfieldTextController.text,
                                         password: _model.appTextfieldPassModel
-                                            .textfieldController.text,
+                                            .textfieldTextController.text,
                                       );
+
                                       if (MyBillionsApiGroupGroup.signInCall
                                               .customerId(
                                             (_model.signInResponse?.jsonBody ??
@@ -285,7 +284,7 @@ class _SignInScreenWidgetState extends State<SignInScreenWidget> {
 
                                       _navigate();
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),

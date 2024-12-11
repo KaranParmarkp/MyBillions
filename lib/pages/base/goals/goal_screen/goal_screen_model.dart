@@ -1,5 +1,6 @@
 import '/components/app_bg/app_bg_widget.dart';
 import '/components/appbar_logo/appbar_logo_widget.dart';
+import '/components/goal_card/goal_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -12,22 +13,24 @@ import 'package:provider/provider.dart';
 class GoalScreenModel extends FlutterFlowModel<GoalScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for app_bg component.
   late AppBgModel appBgModel;
   // Model for appbar_logo component.
   late AppbarLogoModel appbarLogoModel;
+  // Model for goal_card component.
+  late GoalCardModel goalCardModel;
 
   @override
   void initState(BuildContext context) {
     appBgModel = createModel(context, () => AppBgModel());
     appbarLogoModel = createModel(context, () => AppbarLogoModel());
+    goalCardModel = createModel(context, () => GoalCardModel());
   }
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     appBgModel.dispose();
     appbarLogoModel.dispose();
+    goalCardModel.dispose();
   }
 }

@@ -1,5 +1,6 @@
 import '/components/app_bg/app_bg_widget.dart';
 import '/components/appbar_logo/appbar_logo_widget.dart';
+import '/components/goal_card/goal_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -27,7 +28,7 @@ class _GoalScreenWidgetState extends State<GoalScreenWidget> {
     super.initState();
     _model = createModel(context, () => GoalScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -40,9 +41,7 @@ class _GoalScreenWidgetState extends State<GoalScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -55,7 +54,7 @@ class _GoalScreenWidgetState extends State<GoalScreenWidget> {
               children: [
                 wrapWithModel(
                   model: _model.appBgModel,
-                  updateCallback: () => setState(() {}),
+                  updateCallback: () => safeSetState(() {}),
                   child: AppBgWidget(),
                 ),
                 Column(
@@ -63,8 +62,21 @@ class _GoalScreenWidgetState extends State<GoalScreenWidget> {
                   children: [
                     wrapWithModel(
                       model: _model.appbarLogoModel,
-                      updateCallback: () => setState(() {}),
+                      updateCallback: () => safeSetState(() {}),
                       child: AppbarLogoWidget(),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                      child: wrapWithModel(
+                        model: _model.goalCardModel,
+                        updateCallback: () => safeSetState(() {}),
+                        child: GoalCardWidget(
+                          goalOnTap: () async {
+                            context.pushNamed('text_saving_screen');
+                          },
+                        ),
+                      ),
                     ),
                   ],
                 ),

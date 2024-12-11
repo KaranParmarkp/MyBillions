@@ -12,11 +12,11 @@ class AppButtonWidget extends StatefulWidget {
   const AppButtonWidget({
     super.key,
     String? title,
-    this.onTap,
+    this.onButtonTap,
   }) : this.title = title ?? ' ';
 
   final String title;
-  final Future Function()? onTap;
+  final Future Function()? onButtonTap;
 
   @override
   State<AppButtonWidget> createState() => _AppButtonWidgetState();
@@ -36,7 +36,7 @@ class _AppButtonWidgetState extends State<AppButtonWidget> {
     super.initState();
     _model = createModel(context, () => AppButtonModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -50,9 +50,9 @@ class _AppButtonWidgetState extends State<AppButtonWidget> {
   Widget build(BuildContext context) {
     return FFButtonWidget(
       onPressed: () async {
-        await widget.onTap?.call();
+        await widget.onButtonTap?.call();
       },
-      text: widget.title,
+      text: widget!.title,
       options: FFButtonOptions(
         width: double.infinity,
         height: 50.0,

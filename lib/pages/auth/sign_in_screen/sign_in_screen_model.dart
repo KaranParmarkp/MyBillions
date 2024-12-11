@@ -18,7 +18,6 @@ import 'package:provider/provider.dart';
 class SignInScreenModel extends FlutterFlowModel<SignInScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for app_bg_new component.
   late AppBgNewModel appBgNewModel;
@@ -40,15 +39,14 @@ class SignInScreenModel extends FlutterFlowModel<SignInScreenWidget> {
     emailTexfieldModel = createModel(context, () => AppTextfieldModel());
     appTextfieldPassModel = createModel(context, () => AppTextfieldPassModel());
     appButtonModel = createModel(context, () => AppButtonModel());
-
-    emailTexfieldModel.textfieldControllerValidator = _formTextFieldValidator1;
-    appTextfieldPassModel.textfieldControllerValidator =
+    emailTexfieldModel.textfieldTextControllerValidator =
+        _formTextFieldValidator1;
+    appTextfieldPassModel.textfieldTextControllerValidator =
         _formTextFieldValidator2;
   }
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     appBgNewModel.dispose();
     appLogoNewModel.dispose();
     emailTexfieldModel.dispose();

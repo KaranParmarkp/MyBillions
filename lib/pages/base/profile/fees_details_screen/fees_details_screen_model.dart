@@ -14,7 +14,6 @@ import 'package:provider/provider.dart';
 class FeesDetailsScreenModel extends FlutterFlowModel<FeesDetailsScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (download invoice)] action in Text widget.
   ApiCallResponse? downloadApiResponse;
 
@@ -22,7 +21,5 @@ class FeesDetailsScreenModel extends FlutterFlowModel<FeesDetailsScreenWidget> {
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 }

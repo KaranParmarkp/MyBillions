@@ -2,7 +2,8 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/pages/base/dashboard/reports/pf_filters/pf_filters_widget.dart';
+import '/pages/base/dashboard/reports/portfolio_allocation/portfolio_allocation_screen/portfolio_allocation_screen_widget.dart';
+import '/pages/base/dashboard/reports/portfolio_summery/portfolio_list/portfolio_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,7 +32,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
     super.initState();
     _model = createModel(context, () => ReportsModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -44,101 +45,92 @@ class _ReportsWidgetState extends State<ReportsWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+      padding: EdgeInsetsDirectional.fromSTEB(20.0, 5.0, 20.0, 0.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
-            child: FlutterFlowDropDown<String>(
-              controller: _model.dropDownValueController ??=
-                  FormFieldController<String>(
-                _model.dropDownValue ??= FFLocalizations.of(context).getText(
-                  '7591v64d' /* Portfolio Summary */,
-                ),
-              ),
-              options: [
-                FFLocalizations.of(context).getText(
-                  '2s8ciah3' /* Portfolio Summary */,
-                ),
-                FFLocalizations.of(context).getText(
-                  'wmkjs0v8' /* Transaction Report */,
-                ),
-                FFLocalizations.of(context).getText(
-                  '081ff49z' /* Capital Gain */,
-                ),
-                FFLocalizations.of(context).getText(
-                  'vyesc9ie' /* Portfolio Allocation */,
-                ),
-                FFLocalizations.of(context).getText(
-                  'lsyw0c0u' /* US PFIC */,
-                )
-              ],
-              onChanged: (val) async {
-                setState(() => _model.dropDownValue = val);
-                setState(() {
-                  _model.currentSelected = _model.dropDownValue!;
-                });
-              },
-              height: 40.0,
-              textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                    letterSpacing: 0.0,
-                    useGoogleFonts: GoogleFonts.asMap().containsKey(
-                        FlutterFlowTheme.of(context).bodyMediumFamily),
-                  ),
-              icon: Icon(
-                Icons.keyboard_arrow_down_rounded,
-                color: FlutterFlowTheme.of(context).secondary,
-                size: 24.0,
-              ),
-              fillColor: FlutterFlowTheme.of(context).secondaryBackground,
-              elevation: 2.0,
-              borderColor: FlutterFlowTheme.of(context).secondary,
-              borderWidth: 1.0,
-              borderRadius: 8.0,
-              margin: EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
-              hidesUnderline: true,
-              isOverButton: false,
-              isSearchable: false,
-              isMultiSelect: false,
-            ),
-          ),
-          Align(
-            alignment: AlignmentDirectional(0.0, -1.0),
-            child: InkWell(
-              splashColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              highlightColor: Colors.transparent,
-              onTap: () async {
-                await showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor:
-                      FlutterFlowTheme.of(context).primaryBackground,
-                  useSafeArea: true,
-                  context: context,
-                  builder: (context) {
-                    return Padding(
-                      padding: MediaQuery.viewInsetsOf(context),
-                      child: PfFiltersWidget(),
-                    );
-                  },
-                ).then((value) => safeSetState(() {}));
-              },
-              child: Text(
-                FFLocalizations.of(context).getText(
-                  'j1odlb89' /* Filters */,
-                ),
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                      letterSpacing: 0.0,
-                      useGoogleFonts: GoogleFonts.asMap().containsKey(
-                          FlutterFlowTheme.of(context).bodyMediumFamily),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
+                  child: FlutterFlowDropDown<String>(
+                    controller: _model.dropDownValueController ??=
+                        FormFieldController<String>(
+                      _model.dropDownValue ??=
+                          FFLocalizations.of(context).getText(
+                        '7591v64d' /* Portfolio Summary */,
+                      ),
                     ),
+                    options: [
+                      FFLocalizations.of(context).getText(
+                        '2s8ciah3' /* Portfolio Summary */,
+                      ),
+                      FFLocalizations.of(context).getText(
+                        'wmkjs0v8' /* Transaction Report */,
+                      ),
+                      FFLocalizations.of(context).getText(
+                        '081ff49z' /* Capital Gain */,
+                      ),
+                      FFLocalizations.of(context).getText(
+                        'vyesc9ie' /* Portfolio Allocation */,
+                      ),
+                      FFLocalizations.of(context).getText(
+                        'lsyw0c0u' /* US PFIC */,
+                      )
+                    ],
+                    onChanged: (val) async {
+                      safeSetState(() => _model.dropDownValue = val);
+                      _model.currentSelected = _model.dropDownValue!;
+                      safeSetState(() {});
+                    },
+                    width: double.infinity,
+                    height: 40.0,
+                    textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily:
+                              FlutterFlowTheme.of(context).bodyMediumFamily,
+                          letterSpacing: 0.0,
+                          useGoogleFonts: GoogleFonts.asMap().containsKey(
+                              FlutterFlowTheme.of(context).bodyMediumFamily),
+                        ),
+                    icon: Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: FlutterFlowTheme.of(context).secondary,
+                      size: 24.0,
+                    ),
+                    fillColor: FlutterFlowTheme.of(context).secondaryBackground,
+                    elevation: 2.0,
+                    borderColor: FlutterFlowTheme.of(context).secondary,
+                    borderWidth: 1.0,
+                    borderRadius: 8.0,
+                    margin:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                    hidesUnderline: true,
+                    isOverButton: false,
+                    isSearchable: false,
+                    isMultiSelect: false,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          if (_model.dropDownValue == 'Portfolio Summary')
+            Expanded(
+              child: wrapWithModel(
+                model: _model.portfolioListModel,
+                updateCallback: () => safeSetState(() {}),
+                child: PortfolioListWidget(),
               ),
             ),
-          ),
+          if (_model.dropDownValue == 'Portfolio Allocation')
+            Expanded(
+              child: wrapWithModel(
+                model: _model.portfolioAllocationScreenModel,
+                updateCallback: () => safeSetState(() {}),
+                child: PortfolioAllocationScreenWidget(),
+              ),
+            ),
         ],
       ),
     );

@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/components/app_bg/app_bg_widget.dart';
 import '/components/app_logo_new_2/app_logo_new2_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -8,6 +9,7 @@ import '/flutter_flow/form_field_controller.dart';
 import '/pages/base/dashboard/financial_summary/financial_summary/financial_summary_widget.dart';
 import '/pages/base/dashboard/recommendations/recommendations_list/recommendations_list_widget.dart';
 import '/pages/base/dashboard/reports/reports/reports_widget.dart';
+import '/pages/base/dashboard/trent_analysis/trend_analysis_screen/trend_analysis_screen_widget.dart';
 import 'dashboard_screen_widget.dart' show DashboardScreenWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -19,9 +21,13 @@ class DashboardScreenModel extends FlutterFlowModel<DashboardScreenWidget> {
 
   String currentSelected = 'Financial Summery';
 
+  PortfolioRequestModelStruct? localModel;
+  void updateLocalModelStruct(Function(PortfolioRequestModelStruct) updateFn) {
+    updateFn(localModel ??= PortfolioRequestModelStruct());
+  }
+
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Model for app_bg component.
   late AppBgModel appBgModel;
   // Model for app_logo_new_2 component.
@@ -35,6 +41,8 @@ class DashboardScreenModel extends FlutterFlowModel<DashboardScreenWidget> {
   late RecommendationsListModel recommendationsListModel;
   // Model for reports component.
   late ReportsModel reportsModel;
+  // Model for trend_analysis_screen component.
+  late TrendAnalysisScreenModel trendAnalysisScreenModel;
 
   @override
   void initState(BuildContext context) {
@@ -44,15 +52,17 @@ class DashboardScreenModel extends FlutterFlowModel<DashboardScreenWidget> {
     recommendationsListModel =
         createModel(context, () => RecommendationsListModel());
     reportsModel = createModel(context, () => ReportsModel());
+    trendAnalysisScreenModel =
+        createModel(context, () => TrendAnalysisScreenModel());
   }
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     appBgModel.dispose();
     appLogoNew2Model.dispose();
     financialSummaryModel.dispose();
     recommendationsListModel.dispose();
     reportsModel.dispose();
+    trendAnalysisScreenModel.dispose();
   }
 }

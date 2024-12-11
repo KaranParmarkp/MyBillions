@@ -36,10 +36,10 @@ class _AppTextfieldPassWidgetState extends State<AppTextfieldPassWidget> {
     super.initState();
     _model = createModel(context, () => AppTextfieldPassModel());
 
-    _model.textfieldController ??= TextEditingController();
+    _model.textfieldTextController ??= TextEditingController();
     _model.textfieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -54,18 +54,18 @@ class _AppTextfieldPassWidgetState extends State<AppTextfieldPassWidget> {
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
       child: TextFormField(
-        controller: _model.textfieldController,
+        controller: _model.textfieldTextController,
         focusNode: _model.textfieldFocusNode,
         obscureText: !_model.textfieldVisibility,
         decoration: InputDecoration(
-          labelText: widget.label,
+          labelText: widget!.label,
           labelStyle: FlutterFlowTheme.of(context).bodySmall.override(
                 fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
                 letterSpacing: 0.0,
                 useGoogleFonts: GoogleFonts.asMap()
                     .containsKey(FlutterFlowTheme.of(context).bodySmallFamily),
               ),
-          hintText: widget.hint,
+          hintText: widget!.hint,
           hintStyle: FlutterFlowTheme.of(context).bodySmall.override(
                 fontFamily: FlutterFlowTheme.of(context).bodySmallFamily,
                 letterSpacing: 0.0,
@@ -105,7 +105,7 @@ class _AppTextfieldPassWidgetState extends State<AppTextfieldPassWidget> {
           contentPadding:
               EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
           suffixIcon: InkWell(
-            onTap: () => setState(
+            onTap: () => safeSetState(
               () => _model.textfieldVisibility = !_model.textfieldVisibility,
             ),
             focusNode: FocusNode(skipTraversal: true),
@@ -124,8 +124,7 @@ class _AppTextfieldPassWidgetState extends State<AppTextfieldPassWidget> {
               useGoogleFonts: GoogleFonts.asMap()
                   .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
             ),
-        minLines: null,
-        validator: _model.textfieldControllerValidator.asValidator(context),
+        validator: _model.textfieldTextControllerValidator.asValidator(context),
       ),
     );
   }

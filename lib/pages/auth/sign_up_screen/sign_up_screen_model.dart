@@ -18,7 +18,6 @@ import 'package:provider/provider.dart';
 class SignUpScreenModel extends FlutterFlowModel<SignUpScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for app_bg_new component.
   late AppBgNewModel appBgNewModel;
@@ -49,18 +48,18 @@ class SignUpScreenModel extends FlutterFlowModel<SignUpScreenWidget> {
     emailTexfieldModel = createModel(context, () => AppTextfieldModel());
     appTextfieldPassModel = createModel(context, () => AppTextfieldPassModel());
     appButtonModel = createModel(context, () => AppButtonModel());
-
-    firstNameModel.textfieldControllerValidator = _formTextFieldValidator1;
-    lastNameModel.textfieldControllerValidator = _formTextFieldValidator2;
-    phoneNumberModel.textfieldControllerValidator = _formTextFieldValidator3;
-    emailTexfieldModel.textfieldControllerValidator = _formTextFieldValidator4;
-    appTextfieldPassModel.textfieldControllerValidator =
+    firstNameModel.textfieldTextControllerValidator = _formTextFieldValidator1;
+    lastNameModel.textfieldTextControllerValidator = _formTextFieldValidator2;
+    phoneNumberModel.textfieldTextControllerValidator =
+        _formTextFieldValidator3;
+    emailTexfieldModel.textfieldTextControllerValidator =
+        _formTextFieldValidator4;
+    appTextfieldPassModel.textfieldTextControllerValidator =
         _formTextFieldValidator5;
   }
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     appBgNewModel.dispose();
     appLogoNewModel.dispose();
     firstNameModel.dispose();

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'dart:typed_data';
 import '../schema/structs/index.dart';
 
+import 'package:flutter/foundation.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 import 'api_manager.dart';
 
@@ -12,7 +14,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start MyBillionsApiGroup Group Code
 
 class MyBillionsApiGroupGroup {
-  static String baseUrl = 'http://beta.mybillions.in/platform/API/api/';
+  static String getBaseUrl() => 'http://beta.mybillions.in/platform/API/api/';
   static Map<String, String> headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };
@@ -30,6 +32,14 @@ class MyBillionsApiGroupGroup {
   static ClientManagementCall clientManagementCall = ClientManagementCall();
   static FeesDetailsCall feesDetailsCall = FeesDetailsCall();
   static DownloadInvoiceCall downloadInvoiceCall = DownloadInvoiceCall();
+  static UpdateProfileCall updateProfileCall = UpdateProfileCall();
+  static CodeTypesWithCodeDetailsCall codeTypesWithCodeDetailsCall =
+      CodeTypesWithCodeDetailsCall();
+  static PortfolioSummaryCall portfolioSummaryCall = PortfolioSummaryCall();
+  static GoalWiseReportCall goalWiseReportCall = GoalWiseReportCall();
+  static PortfolioAllocationCall portfolioAllocationCall =
+      PortfolioAllocationCall();
+  static TaxSavingCall taxSavingCall = TaxSavingCall();
 }
 
 class SignInCall {
@@ -37,10 +47,11 @@ class SignInCall {
     String? email = '',
     String? password = '',
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'sign in',
-      apiUrl:
-          '${MyBillionsApiGroupGroup.baseUrl}Customers/FnValidateCustomerByMail',
+      apiUrl: '${baseUrl}Customers/FnValidateCustomerByMail',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -54,6 +65,7 @@ class SignInCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -80,9 +92,11 @@ class DashboardCall {
   Future<ApiCallResponse> call({
     int? customerId,
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'dashboard',
-      apiUrl: '${MyBillionsApiGroupGroup.baseUrl}Customers/GetCustomersAllPlan',
+      apiUrl: '${baseUrl}Customers/GetCustomersAllPlan',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -95,6 +109,7 @@ class DashboardCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -141,10 +156,11 @@ class PerformanceReportDataCall {
   Future<ApiCallResponse> call({
     String? customerId = '',
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'performanceReportData',
-      apiUrl:
-          '${MyBillionsApiGroupGroup.baseUrl}PerformanceReport/GetperformanceReportData',
+      apiUrl: '${baseUrl}PerformanceReport/GetperformanceReportData',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -157,6 +173,7 @@ class PerformanceReportDataCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -256,10 +273,11 @@ class RecommendationsDataCall {
   Future<ApiCallResponse> call({
     int? customerId,
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'recommendationsData',
-      apiUrl:
-          '${MyBillionsApiGroupGroup.baseUrl}Customers/GetFundRecommendations',
+      apiUrl: '${baseUrl}Customers/GetFundRecommendations',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -272,6 +290,7 @@ class RecommendationsDataCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -364,9 +383,11 @@ class SignUpCall {
     String? fullName = '',
     String? agentCode = '',
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'sign up',
-      apiUrl: '${MyBillionsApiGroupGroup.baseUrl}Customers/FnRegisterCustomer',
+      apiUrl: '${baseUrl}Customers/FnRegisterCustomer',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -384,6 +405,7 @@ class SignUpCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -418,9 +440,11 @@ class ForgotPasswordCall {
   Future<ApiCallResponse> call({
     String? loginID = '',
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'forgot password',
-      apiUrl: '${MyBillionsApiGroupGroup.baseUrl}Customers/VerifyLoginID',
+      apiUrl: '${baseUrl}Customers/VerifyLoginID',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -433,6 +457,7 @@ class ForgotPasswordCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -453,9 +478,11 @@ class ResetPasswordCall {
     String? email = '',
     String? newPassword = '',
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'reset password',
-      apiUrl: '${MyBillionsApiGroupGroup.baseUrl}Customers/FnForgotPassword',
+      apiUrl: '${baseUrl}Customers/FnForgotPassword',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -470,6 +497,7 @@ class ResetPasswordCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -490,10 +518,11 @@ class ReportsPfDropdownCall {
     String? startDate = '16/01/2019',
     String? endDate = '',
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'reports  pf dropdown',
-      apiUrl:
-          '${MyBillionsApiGroupGroup.baseUrl}Report/getDefaultDatForPortfolioReport',
+      apiUrl: '${baseUrl}Report/getDefaultDatForPortfolioReport',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -508,6 +537,7 @@ class ReportsPfDropdownCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -540,15 +570,35 @@ class ReportsPfDropdownCall {
         r'''$.customerPlanLists''',
         true,
       ) as List?;
+  List<int>? investorIds(dynamic response) => (getJsonField(
+        response,
+        r'''$.InvestorLists[:].InvestorID''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<int>? customerPlanIds(dynamic response) => (getJsonField(
+        response,
+        r'''$.customerPlanLists[:].CustomerPlanID''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
 }
 
 class GetProfileCall {
   Future<ApiCallResponse> call({
     int? id,
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'get profile',
-      apiUrl: '${MyBillionsApiGroupGroup.baseUrl}Customers/GetCustomer',
+      apiUrl: '${baseUrl}Customers/GetCustomer',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -561,6 +611,7 @@ class GetProfileCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -605,16 +656,33 @@ class GetProfileCall {
         response,
         r'''$.customer.RiskRating''',
       ));
+  String? countryCode(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.customer.CountryCode''',
+      ));
+  int? membershipPlanTypeCd(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.customer.MembershipPlanTypeCd''',
+      ));
+  int? residencyStatusCd(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.customer.ResidencyStatusCd''',
+      ));
+  int? taxBracketCd(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.customer.TaxBracketCd''',
+      ));
 }
 
 class ClientManagementCall {
   Future<ApiCallResponse> call({
     int? customerId,
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'client management',
-      apiUrl:
-          '${MyBillionsApiGroupGroup.baseUrl}Customers/GetCustomersInvestors',
+      apiUrl: '${baseUrl}Customers/GetCustomersInvestors',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -627,6 +695,7 @@ class ClientManagementCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -660,10 +729,11 @@ class FeesDetailsCall {
   Future<ApiCallResponse> call({
     String? customerId = '',
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'Fees Details',
-      apiUrl:
-          '${MyBillionsApiGroupGroup.baseUrl}Report/FeereportCustomer?customerId=${customerId}',
+      apiUrl: '${baseUrl}Report/FeereportCustomer?customerId=${customerId}',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -674,6 +744,7 @@ class FeesDetailsCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -690,9 +761,11 @@ class DownloadInvoiceCall {
     int? invoiceNumber,
     int? customerId,
   }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
     return ApiManager.instance.makeApiCall(
       callName: 'download invoice',
-      apiUrl: '${MyBillionsApiGroupGroup.baseUrl}Fee/GenerateInvoice',
+      apiUrl: '${baseUrl}Fee/GenerateInvoice',
       callType: ApiCallType.GET,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -705,6 +778,7 @@ class DownloadInvoiceCall {
       encodeBodyUtf8: false,
       decodeUtf8: false,
       cache: false,
+      isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
@@ -713,6 +787,435 @@ class DownloadInvoiceCall {
         response,
         r'''$''',
       ));
+}
+
+class UpdateProfileCall {
+  Future<ApiCallResponse> call({
+    int? customerID,
+    String? mobileNumber = '',
+    String? countryCode = '',
+    int? riskRating,
+    String? email = '',
+    String? fullName = '',
+    int? taxBracketCd,
+    int? residencyStatuscd,
+  }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'update profile',
+      apiUrl: '${baseUrl}Customers/FnUpdateCustomer',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'CustomerID': customerID,
+        'MobileNumber': mobileNumber,
+        'CountryCode': countryCode,
+        'RiskRating': riskRating,
+        'Email': email,
+        'FullName': fullName,
+        'TaxBracketCd': taxBracketCd,
+        'ResidencyStatuscd': residencyStatuscd,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class CodeTypesWithCodeDetailsCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'code types with code details',
+      apiUrl: '${baseUrl}Customers/FnGetAllCodeTypesWithCodeDetails',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List<String>? description(dynamic response) => (getJsonField(
+        response,
+        r'''$.CodeTypes[:].Codes[:].Description''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? codeName(dynamic response) => (getJsonField(
+        response,
+        r'''$.CodeTypes[:].CodeName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? code(dynamic response) => (getJsonField(
+        response,
+        r'''$.CodeTypes[:].Codes[:].Code''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class PortfolioSummaryCall {
+  Future<ApiCallResponse> call({
+    int? investorId,
+    int? customerId,
+    int? planID,
+    String? category = '',
+    int? allFolio,
+    String? startdate = '',
+    String? enddate = '',
+    String? fundHouse = '',
+    String? schemeName = '',
+    String? folioNumber = '',
+  }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'portfolio summary',
+      apiUrl: '${baseUrl}Report/portfolioSummaryReport',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'InvestorId': investorId,
+        'CustomerId': customerId,
+        'PlanID': planID,
+        'Category': category,
+        'AllFolio': allFolio,
+        'startdate': startdate,
+        'enddate': enddate,
+        'FundHouse': fundHouse,
+        'SchemeName': schemeName,
+        'FolioNumber': folioNumber,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? mainList(dynamic response) => getJsonField(
+        response,
+        r'''$.pMain''',
+        true,
+      ) as List?;
+  List<double>? currentAmountList(dynamic response) => (getJsonField(
+        response,
+        r'''$.pMain[:].PortfolioRecord[:].PortfolioReport[:].currentAmount''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List<double>? xirrList(dynamic response) => (getJsonField(
+        response,
+        r'''$.pMain[:].PortfolioRecord[:].PortfolioReport[:].xirr''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List<double>? netGainList(dynamic response) => (getJsonField(
+        response,
+        r'''$.pMain[:].PortfolioRecord[:].PortfolioReport[:].netGain''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  double? xirrallTotal(dynamic response) => castToType<double>(getJsonField(
+        response,
+        r'''$.xirrall''',
+      ));
+}
+
+class GoalWiseReportCall {
+  Future<ApiCallResponse> call({
+    int? year,
+    int? customerId,
+    int? type,
+    int? customerPlanId,
+  }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'goal wise report',
+      apiUrl: '${baseUrl}TrendingReport/goalWiseReport',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'year': year,
+        'CustomerId': customerId,
+        'type': type,
+        'customerPlanId': customerPlanId,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? name(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.trendingReportModelList[:].name''',
+      ));
+  List<String>? categoryList(dynamic response) => (getJsonField(
+        response,
+        r'''$.category''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<double>? dataList(dynamic response) => (getJsonField(
+        response,
+        r'''$.trendingReportModelList[:].data''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+}
+
+class PortfolioAllocationCall {
+  Future<ApiCallResponse> call({
+    int? customerId,
+    int? customerPlanId = 0,
+  }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'portfolio allocation',
+      apiUrl: '${baseUrl}Report/getPortfolioAllocation',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'CustomerId': customerId,
+        'customerPlanId': customerPlanId,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List<String>? categoryName(dynamic response) => (getJsonField(
+        response,
+        r'''$.portBy_Equity[:].categryname''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<double>? categoryPercent(dynamic response) => (getJsonField(
+        response,
+        r'''$.portBy_Equity[:].sbEquitypercent''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List<String>? schemeType(dynamic response) => (getJsonField(
+        response,
+        r'''$.portByScheme_Type[:].schemeType''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<double>? schemeTypeTotal(dynamic response) => (getJsonField(
+        response,
+        r'''$.portByScheme_Type[:].total''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List<double>? schemeTypePercent(dynamic response) => (getJsonField(
+        response,
+        r'''$.portByScheme_Type[:].Share_percent''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List<String>? investorName(dynamic response) => (getJsonField(
+        response,
+        r'''$.portBy_Investor[:].ApplicantDetails''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<double>? investorTotal(dynamic response) => (getJsonField(
+        response,
+        r'''$.portBy_Investor[:].total''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List<double>? investorPercent(dynamic response) => (getJsonField(
+        response,
+        r'''$.portBy_Investor[:].Share_percent''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List<String>? fundHouseName(dynamic response) => (getJsonField(
+        response,
+        r'''$.portByFundHouse[:].FundHouse''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<double>? fundHouseTotal(dynamic response) => (getJsonField(
+        response,
+        r'''$.portByFundHouse[:].total''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List<double>? fundHousePercentage(dynamic response) => (getJsonField(
+        response,
+        r'''$.portByFundHouse[:].percent''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List? debtList(dynamic response) => getJsonField(
+        response,
+        r'''$.portBy_Debt''',
+        true,
+      ) as List?;
+  List<String>? debtSchemeNameList(dynamic response) => (getJsonField(
+        response,
+        r'''$.portBy_Debt[:].Categorylist[:].schemeName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<double>? debtSchemeTotalList(dynamic response) => (getJsonField(
+        response,
+        r'''$.portBy_Debt[:].Categorylist[:].total''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List<double>? debtSchemePercentList(dynamic response) => (getJsonField(
+        response,
+        r'''$.portBy_Debt[:].Categorylist[:].percent''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<double>(x))
+          .withoutNulls
+          .toList();
+  List? equityList(dynamic response) => getJsonField(
+        response,
+        r'''$.portBy_Equity''',
+        true,
+      ) as List?;
+}
+
+class TaxSavingCall {
+  Future<ApiCallResponse> call({
+    int? codeID,
+    int? customerID,
+    String? planName = '',
+    String? planquestionanswers = '',
+  }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'tax saving ',
+      apiUrl: '${baseUrl}Customers/FnSaveCustomerPlan',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'CodeID': codeID,
+        'CustomerID': customerID,
+        'PlanName': planName,
+        'planquestionanswers': planquestionanswers,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End MyBillionsApiGroup Group Code
@@ -733,11 +1236,18 @@ class ApiPagingParams {
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
 
+String _toEncodable(dynamic item) {
+  return item;
+}
+
 String _serializeList(List? list) {
   list ??= <String>[];
   try {
-    return json.encode(list);
+    return json.encode(list, toEncodable: _toEncodable);
   } catch (_) {
+    if (kDebugMode) {
+      print("List serialization failed. Returning empty list.");
+    }
     return '[]';
   }
 }
@@ -745,8 +1255,11 @@ String _serializeList(List? list) {
 String _serializeJson(dynamic jsonVar, [bool isList = false]) {
   jsonVar ??= (isList ? [] : {});
   try {
-    return json.encode(jsonVar);
+    return json.encode(jsonVar, toEncodable: _toEncodable);
   } catch (_) {
+    if (kDebugMode) {
+      print("Json serialization failed. Returning empty json.");
+    }
     return isList ? '[]' : '{}';
   }
 }

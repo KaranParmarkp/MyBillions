@@ -20,25 +20,30 @@ class UserModelStruct extends BaseStruct {
   String? _emailId;
   String get emailId => _emailId ?? '';
   set emailId(String? val) => _emailId = val;
+
   bool hasEmailId() => _emailId != null;
 
   // "fullName" field.
   String? _fullName;
   String get fullName => _fullName ?? '';
   set fullName(String? val) => _fullName = val;
+
   bool hasFullName() => _fullName != null;
 
   // "customerId" field.
   int? _customerId;
   int get customerId => _customerId ?? 0;
   set customerId(int? val) => _customerId = val;
-  void incrementCustomerId(int amount) => _customerId = customerId + amount;
+
+  void incrementCustomerId(int amount) => customerId = customerId + amount;
+
   bool hasCustomerId() => _customerId != null;
 
   // "mobile" field.
   String? _mobile;
   String get mobile => _mobile ?? '';
   set mobile(String? val) => _mobile = val;
+
   bool hasMobile() => _mobile != null;
 
   static UserModelStruct fromMap(Map<String, dynamic> data) => UserModelStruct(

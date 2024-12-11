@@ -33,7 +33,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
     super.initState();
     _model = createModel(context, () => SignUpScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -46,9 +46,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
@@ -56,7 +54,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
           children: [
             wrapWithModel(
               model: _model.appBgNewModel,
-              updateCallback: () => setState(() {}),
+              updateCallback: () => safeSetState(() {}),
               child: AppBgNewWidget(),
             ),
             Container(
@@ -77,7 +75,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                           alignment: AlignmentDirectional(0.0, 0.0),
                           child: wrapWithModel(
                             model: _model.appLogoNewModel,
-                            updateCallback: () => setState(() {}),
+                            updateCallback: () => safeSetState(() {}),
                             child: AppLogoNewWidget(
                               showPadding: true,
                             ),
@@ -116,7 +114,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                         ),
                         wrapWithModel(
                           model: _model.firstNameModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: AppTextfieldWidget(
                             hint: 'Enter your firstname',
                             label: 'Enter firstname',
@@ -124,7 +122,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                         ),
                         wrapWithModel(
                           model: _model.lastNameModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: AppTextfieldWidget(
                             hint: 'Enter your lastname',
                             label: 'Enter lastname',
@@ -132,7 +130,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                         ),
                         wrapWithModel(
                           model: _model.phoneNumberModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: AppTextfieldWidget(
                             hint: 'Enter your phone number',
                             label: 'Enter phone number',
@@ -140,7 +138,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                         ),
                         wrapWithModel(
                           model: _model.emailTexfieldModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: AppTextfieldWidget(
                             hint: 'Enter your email',
                             label: 'Enter email',
@@ -148,7 +146,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                         ),
                         wrapWithModel(
                           model: _model.appTextfieldPassModel,
-                          updateCallback: () => setState(() {}),
+                          updateCallback: () => safeSetState(() {}),
                           child: AppTextfieldPassWidget(
                             hint: 'Enter your password',
                             label: 'Enter password',
@@ -201,10 +199,10 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                                     20.0, 0.0, 0.0, 0.0),
                                 child: wrapWithModel(
                                   model: _model.appButtonModel,
-                                  updateCallback: () => setState(() {}),
+                                  updateCallback: () => safeSetState(() {}),
                                   child: AppButtonWidget(
                                     title: 'Register',
-                                    onTap: () async {
+                                    onButtonTap: () async {
                                       Function() _navigate = () {};
                                       if (_model.formKey.currentState == null ||
                                           !_model.formKey.currentState!
@@ -216,15 +214,16 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                                               .signUpCall
                                               .call(
                                         email: _model.emailTexfieldModel
-                                            .textfieldController.text,
+                                            .textfieldTextController.text,
                                         countryCode: '91',
                                         mobileNumber: _model.phoneNumberModel
-                                            .textfieldController.text,
+                                            .textfieldTextController.text,
                                         password: _model.appTextfieldPassModel
-                                            .textfieldController.text,
+                                            .textfieldTextController.text,
                                         fullName:
-                                            '${_model.firstNameModel.textfieldController.text} ${_model.lastNameModel.textfieldController.text}',
+                                            '${_model.firstNameModel.textfieldTextController.text} ${_model.lastNameModel.textfieldTextController.text}',
                                       );
+
                                       if (MyBillionsApiGroupGroup.signUpCall
                                               .responseCode(
                                             (_model.signUpResponse?.jsonBody ??
@@ -342,7 +341,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
 
                                       _navigate();
 
-                                      setState(() {});
+                                      safeSetState(() {});
                                     },
                                   ),
                                 ),

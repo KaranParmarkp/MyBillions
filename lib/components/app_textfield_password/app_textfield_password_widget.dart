@@ -38,7 +38,7 @@ class _AppTextfieldPasswordWidgetState
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -64,7 +64,7 @@ class _AppTextfieldPasswordWidgetState
                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                     FlutterFlowTheme.of(context).labelMediumFamily),
               ),
-          hintText: widget.hint,
+          hintText: widget!.hint,
           hintStyle: FlutterFlowTheme.of(context).labelMedium.override(
                 fontFamily: FlutterFlowTheme.of(context).labelMediumFamily,
                 color: FlutterFlowTheme.of(context).accent2,
@@ -103,7 +103,7 @@ class _AppTextfieldPasswordWidgetState
           filled: true,
           fillColor: Color(0x197A7A7A),
           suffixIcon: InkWell(
-            onTap: () => setState(
+            onTap: () => safeSetState(
               () => _model.passwordVisibility = !_model.passwordVisibility,
             ),
             focusNode: FocusNode(skipTraversal: true),
@@ -122,7 +122,6 @@ class _AppTextfieldPasswordWidgetState
               useGoogleFonts: GoogleFonts.asMap()
                   .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
             ),
-        minLines: null,
         cursorColor: FlutterFlowTheme.of(context).primaryText,
         validator: _model.textControllerValidator.asValidator(context),
       ),

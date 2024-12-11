@@ -30,7 +30,7 @@ class _FeesDetailsScreenWidgetState extends State<FeesDetailsScreenWidget> {
     super.initState();
     _model = createModel(context, () => FeesDetailsScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -43,9 +43,7 @@ class _FeesDetailsScreenWidgetState extends State<FeesDetailsScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -109,6 +107,7 @@ class _FeesDetailsScreenWidgetState extends State<FeesDetailsScreenWidget> {
                     );
                   }
                   final listViewFeesDetailsResponse = snapshot.data!;
+
                   return Builder(
                     builder: (context) {
                       final feeList = MyBillionsApiGroupGroup.feesDetailsCall
@@ -117,6 +116,7 @@ class _FeesDetailsScreenWidgetState extends State<FeesDetailsScreenWidget> {
                               )
                               ?.toList() ??
                           [];
+
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
@@ -242,7 +242,7 @@ class _FeesDetailsScreenWidgetState extends State<FeesDetailsScreenWidget> {
                                           Expanded(
                                             child: Text(
                                               '${dateTimeFormat(
-                                                'yMMMd',
+                                                "yMMMd",
                                                 functions.stringToDateTime(
                                                     getJsonField(
                                                   feeListItem,
@@ -252,7 +252,7 @@ class _FeesDetailsScreenWidgetState extends State<FeesDetailsScreenWidget> {
                                                     FFLocalizations.of(context)
                                                         .languageCode,
                                               )}-${dateTimeFormat(
-                                                'yMMMd',
+                                                "yMMMd",
                                                 functions.stringToDateTime(
                                                     getJsonField(
                                                   feeListItem,
@@ -363,7 +363,7 @@ class _FeesDetailsScreenWidgetState extends State<FeesDetailsScreenWidget> {
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 5.0, 0.0),
+                                                    0.0, 0.0, 12.0, 0.0),
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
@@ -534,6 +534,7 @@ class _FeesDetailsScreenWidgetState extends State<FeesDetailsScreenWidget> {
                                                   customerId: currentUserData
                                                       ?.customerId,
                                                 );
+
                                                 if ((_model.downloadApiResponse
                                                         ?.succeeded ??
                                                     true)) {
@@ -541,7 +542,7 @@ class _FeesDetailsScreenWidgetState extends State<FeesDetailsScreenWidget> {
                                                       '${FFAppConstants.invoiceDownloadBaseLink}${(_model.downloadApiResponse?.bodyText ?? '')}');
                                                 }
 
-                                                setState(() {});
+                                                safeSetState(() {});
                                               },
                                               child: Text(
                                                 FFLocalizations.of(context)

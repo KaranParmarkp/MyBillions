@@ -16,7 +16,6 @@ class ForgotPasswordScreenModel
     extends FlutterFlowModel<ForgotPasswordScreenWidget> {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   // Model for app_bg_new component.
   late AppBgNewModel appBgNewModel;
@@ -38,13 +37,12 @@ class ForgotPasswordScreenModel
     emailTexfieldModel = createModel(context, () => AppTextfieldModel());
     appButtonModel1 = createModel(context, () => AppButtonModel());
     appButtonModel2 = createModel(context, () => AppButtonModel());
-
-    emailTexfieldModel.textfieldControllerValidator = _formTextFieldValidator;
+    emailTexfieldModel.textfieldTextControllerValidator =
+        _formTextFieldValidator;
   }
 
   @override
   void dispose() {
-    unfocusNode.dispose();
     appBgNewModel.dispose();
     appLogoNewModel.dispose();
     emailTexfieldModel.dispose();

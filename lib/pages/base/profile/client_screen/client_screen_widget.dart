@@ -28,7 +28,7 @@ class _ClientScreenWidgetState extends State<ClientScreenWidget> {
     super.initState();
     _model = createModel(context, () => ClientScreenModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -41,9 +41,7 @@ class _ClientScreenWidgetState extends State<ClientScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _model.unfocusNode.canRequestFocus
-          ? FocusScope.of(context).requestFocus(_model.unfocusNode)
-          : FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -107,6 +105,7 @@ class _ClientScreenWidgetState extends State<ClientScreenWidget> {
                     );
                   }
                   final listViewClientManagementResponse = snapshot.data!;
+
                   return Builder(
                     builder: (context) {
                       final invList =
@@ -116,6 +115,7 @@ class _ClientScreenWidgetState extends State<ClientScreenWidget> {
                                   )
                                   ?.toList() ??
                               [];
+
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
@@ -475,7 +475,7 @@ class _ClientScreenWidgetState extends State<ClientScreenWidget> {
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'ani945rh' /* A/C No. */,
+                                                'ani945rh' /* AC No. */,
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)

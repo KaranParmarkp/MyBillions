@@ -11,9 +11,9 @@ class AppTextfieldPassModel extends FlutterFlowModel<AppTextfieldPassWidget> {
 
   // State field(s) for textfield widget.
   FocusNode? textfieldFocusNode;
-  TextEditingController? textfieldController;
+  TextEditingController? textfieldTextController;
   late bool textfieldVisibility;
-  String? Function(BuildContext, String?)? textfieldControllerValidator;
+  String? Function(BuildContext, String?)? textfieldTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
@@ -23,6 +23,6 @@ class AppTextfieldPassModel extends FlutterFlowModel<AppTextfieldPassWidget> {
   @override
   void dispose() {
     textfieldFocusNode?.dispose();
-    textfieldController?.dispose();
+    textfieldTextController?.dispose();
   }
 }

@@ -2,7 +2,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'app_logo_new_model.dart';
@@ -34,7 +33,7 @@ class _AppLogoNewWidgetState extends State<AppLogoNewWidget> {
     super.initState();
     _model = createModel(context, () => AppLogoNewModel());
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -50,11 +49,11 @@ class _AppLogoNewWidgetState extends State<AppLogoNewWidget> {
       alignment: AlignmentDirectional(0.0, 0.0),
       child: Padding(
         padding: EdgeInsets.all(valueOrDefault<double>(
-          widget.showPadding ? 50.0 : 10.0,
+          widget!.showPadding ? 50.0 : 10.0,
           0.0,
         )),
-        child: SvgPicture.asset(
-          'assets/images/logo_primary_color.svg',
+        child: Image.asset(
+          'assets/images/MyBillions_Logo.png',
           height: 61.0,
           fit: BoxFit.fitWidth,
         ),

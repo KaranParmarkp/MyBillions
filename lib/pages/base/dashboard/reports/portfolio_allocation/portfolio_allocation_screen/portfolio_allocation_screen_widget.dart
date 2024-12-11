@@ -93,7 +93,10 @@ class _PortfolioAllocationScreenWidgetState
                           containerReportsPfDropdownResponse.jsonBody,
                         )!
                         .toList(),
-                    _model.applicantDropdownValue!),
+                    valueOrDefault<String>(
+                      _model.applicantDropdownValue,
+                      'All',
+                    )),
                 0,
               ),
             ),

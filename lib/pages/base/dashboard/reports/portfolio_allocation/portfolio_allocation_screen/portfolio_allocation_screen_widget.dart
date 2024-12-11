@@ -120,12 +120,12 @@ class _PortfolioAllocationScreenWidgetState
                 decoration: BoxDecoration(),
                 child: Visibility(
                   visible: MyBillionsApiGroupGroup.portfolioAllocationCall
-                              .categoryName(
+                              .categoryPercent(
                             containerPortfolioAllocationResponse.jsonBody,
                           ) !=
                           null &&
                       (MyBillionsApiGroupGroup.portfolioAllocationCall
-                              .categoryName(
+                              .categoryPercent(
                         containerPortfolioAllocationResponse.jsonBody,
                       ))!
                           .isNotEmpty,
@@ -221,79 +221,50 @@ class _PortfolioAllocationScreenWidgetState
                               width: double.infinity,
                               height: 400.0,
                               decoration: BoxDecoration(),
-                              child: Container(
-                                width: double.infinity,
-                                child: Stack(
-                                  children: [
-                                    FlutterFlowPieChart(
-                                      data: FFPieChartData(
-                                        values: MyBillionsApiGroupGroup
+                              child: Visibility(
+                                visible: MyBillionsApiGroupGroup
                                             .portfolioAllocationCall
                                             .categoryPercent(
                                           containerPortfolioAllocationResponse
                                               .jsonBody,
-                                        )!,
-                                        colors: chartPieChartColorsList,
-                                        radius: [110.0],
-                                        borderColor: [
-                                          FlutterFlowTheme.of(context).primary
-                                        ],
-                                      ),
-                                      donutHoleRadius: 0.0,
-                                      donutHoleColor: Colors.transparent,
-                                      sectionLabelType:
-                                          PieChartSectionLabelType.value,
-                                      sectionLabelStyle: FlutterFlowTheme.of(
-                                              context)
-                                          .headlineSmall
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .headlineSmallFamily,
-                                            fontSize: 12.0,
-                                            letterSpacing: 0.0,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .headlineSmallFamily),
-                                          ),
-                                      labelFormatter: LabelFormatter(
-                                        numberFormat: (val) => formatNumber(
-                                          val,
-                                          formatType: FormatType.percent,
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment:
-                                          AlignmentDirectional(-1.0, -1.0),
-                                      child: FlutterFlowChartLegendWidget(
-                                        entries: MyBillionsApiGroupGroup
+                                        ) !=
+                                        null &&
+                                    (MyBillionsApiGroupGroup
                                             .portfolioAllocationCall
-                                            .categoryName(
-                                              containerPortfolioAllocationResponse
-                                                  .jsonBody,
-                                            )!
-                                            .asMap()
-                                            .entries
-                                            .map(
-                                              (label) => LegendEntry(
-                                                chartPieChartColorsList[
-                                                    label.key %
-                                                        chartPieChartColorsList
-                                                            .length],
-                                                label.value,
-                                              ),
-                                            )
-                                            .toList(),
-                                        width: double.infinity,
-                                        height: 80.0,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
+                                            .categoryPercent(
+                                      containerPortfolioAllocationResponse
+                                          .jsonBody,
+                                    ))!
+                                        .isNotEmpty,
+                                child: Container(
+                                  width: double.infinity,
+                                  child: Stack(
+                                    children: [
+                                      FlutterFlowPieChart(
+                                        data: FFPieChartData(
+                                          values: MyBillionsApiGroupGroup
+                                              .portfolioAllocationCall
+                                              .categoryPercent(
+                                            containerPortfolioAllocationResponse
+                                                .jsonBody,
+                                          )!,
+                                          colors: chartPieChartColorsList,
+                                          radius: [110.0],
+                                          borderColor: [
+                                            FlutterFlowTheme.of(context).primary
+                                          ],
+                                        ),
+                                        donutHoleRadius: 0.0,
+                                        donutHoleColor: Colors.transparent,
+                                        sectionLabelType:
+                                            PieChartSectionLabelType.value,
+                                        sectionLabelStyle: FlutterFlowTheme.of(
+                                                context)
+                                            .headlineSmall
                                             .override(
                                               fontFamily:
                                                   FlutterFlowTheme.of(context)
-                                                      .bodyMediumFamily,
+                                                      .headlineSmallFamily,
                                               fontSize: 12.0,
                                               letterSpacing: 0.0,
                                               useGoogleFonts: GoogleFonts
@@ -301,17 +272,66 @@ class _PortfolioAllocationScreenWidgetState
                                                   .containsKey(
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodyMediumFamily),
+                                                          .headlineSmallFamily),
                                             ),
-                                        textPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                5.0, 0.0, 0.0, 0.0),
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            5.0, 0.0, 5.0, 0.0),
-                                        indicatorSize: 10.0,
+                                        labelFormatter: LabelFormatter(
+                                          numberFormat: (val) => formatNumber(
+                                            val,
+                                            formatType: FormatType.percent,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(-1.0, -1.0),
+                                        child: FlutterFlowChartLegendWidget(
+                                          entries: MyBillionsApiGroupGroup
+                                              .portfolioAllocationCall
+                                              .categoryName(
+                                                containerPortfolioAllocationResponse
+                                                    .jsonBody,
+                                              )!
+                                              .asMap()
+                                              .entries
+                                              .map(
+                                                (label) => LegendEntry(
+                                                  chartPieChartColorsList[label
+                                                          .key %
+                                                      chartPieChartColorsList
+                                                          .length],
+                                                  label.value,
+                                                ),
+                                              )
+                                              .toList(),
+                                          width: double.infinity,
+                                          height: 80.0,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMediumFamily,
+                                                fontSize: 12.0,
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMediumFamily),
+                                              ),
+                                          textPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 0.0, 0.0),
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  5.0, 0.0, 5.0, 0.0),
+                                          indicatorSize: 10.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

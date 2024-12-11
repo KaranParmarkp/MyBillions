@@ -1183,6 +1183,10 @@ class PortfolioAllocationCall {
         r'''$.portBy_Equity''',
         true,
       ) as List?;
+  int? totalDebtEquity(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.totalDebtEquity''',
+      ));
 }
 
 class TaxSavingCall {

@@ -1018,30 +1018,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
-    'zd9sbwoj': {
-      'en': 'Portfolio Summary',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'wsqaq78f': {
-      'en': 'Transaction Report',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    '7vd1bw1u': {
-      'en': 'Capital Gain',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'ny4dnud3': {
-      'en': 'Portfolio Allocation',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
     'u69909x8': {
       'en': 'US PFIC',
       'ar': '',
@@ -1419,7 +1395,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': '',
     },
     '0hc0ofk9': {
-      'en': '',
+      'en': 'All',
       'ar': '',
       'de': '',
       'es': '',

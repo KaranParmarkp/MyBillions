@@ -210,7 +210,8 @@ class _ThreeHeaderTableWidgetState extends State<ThreeHeaderTableWidget> {
                                 child: Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
-                                    widget!.header1List![headerListIndex],
+                                    (widget!.header1List!
+                                        .elementAtOrNull(headerListIndex))!,
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -237,7 +238,8 @@ class _ThreeHeaderTableWidgetState extends State<ThreeHeaderTableWidget> {
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
                                     formatNumber(
-                                      widget!.header2List![headerListIndex],
+                                      widget!.header2List!
+                                          .elementAtOrNull(headerListIndex),
                                       formatType: FormatType.decimal,
                                       decimalType: DecimalType.automatic,
                                     ),
@@ -266,8 +268,10 @@ class _ThreeHeaderTableWidgetState extends State<ThreeHeaderTableWidget> {
                                 child: Align(
                                   alignment: AlignmentDirectional(0.0, 0.0),
                                   child: Text(
-                                    functions.doubleToStringFixed(2,
-                                        widget!.header3List?[headerListIndex]),
+                                    functions.doubleToStringFixed(
+                                        2,
+                                        widget!.header3List
+                                            ?.elementAtOrNull(headerListIndex)),
                                     textAlign: TextAlign.center,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium

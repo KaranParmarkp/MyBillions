@@ -41,7 +41,10 @@ class _ClientScreenWidgetState extends State<ClientScreenWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -475,7 +478,7 @@ class _ClientScreenWidgetState extends State<ClientScreenWidget> {
                                             child: Text(
                                               FFLocalizations.of(context)
                                                   .getText(
-                                                'ani945rh' /* AC No. */,
+                                                'ani945rh' /* A/C No. */,
                                               ),
                                               style:
                                                   FlutterFlowTheme.of(context)
@@ -625,12 +628,14 @@ class _ClientScreenWidgetState extends State<ClientScreenWidget> {
                                           ),
                                           Expanded(
                                             child: Text(
-                                              MyBillionsApiGroupGroup
+                                              (MyBillionsApiGroupGroup
                                                   .clientManagementCall
                                                   .bankName(
-                                                listViewClientManagementResponse
-                                                    .jsonBody,
-                                              )![invListIndex],
+                                                    listViewClientManagementResponse
+                                                        .jsonBody,
+                                                  )!
+                                                  .elementAtOrNull(
+                                                      invListIndex))!,
                                               textAlign: TextAlign.end,
                                               style:
                                                   FlutterFlowTheme.of(context)

@@ -1076,7 +1076,8 @@ class _PortfolioListWidgetState extends State<PortfolioListWidget> {
                                                                                         )?.toString(),
                                                                                         ' 0',
                                                                                       )),
-                                                                                      formatType: FormatType.percent,
+                                                                                      formatType: FormatType.decimal,
+                                                                                      decimalType: DecimalType.periodDecimal,
                                                                                     ),
                                                                                     textAlign: TextAlign.end,
                                                                                     style: FlutterFlowTheme.of(context).displaySmall.override(
@@ -1129,7 +1130,8 @@ class _PortfolioListWidgetState extends State<PortfolioListWidget> {
                                                                                         )?.toString(),
                                                                                         ' 0',
                                                                                       )),
-                                                                                      formatType: FormatType.percent,
+                                                                                      formatType: FormatType.decimal,
+                                                                                      decimalType: DecimalType.periodDecimal,
                                                                                     ),
                                                                                     textAlign: TextAlign.end,
                                                                                     style: FlutterFlowTheme.of(context).displaySmall.override(

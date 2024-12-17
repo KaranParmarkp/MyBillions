@@ -289,7 +289,7 @@ Color checkPositiveValueColor(double value) {
 int toDoubleRound(String amount) {
   //final formatter = NumberFormat('#,##,###');
   //return formatter.format(double.parse(amount).round());
-  return double.parse(amount).round();
+  return double.parse(amount == "" ? "0" : amount).round();
 }
 
 double schemeTotalAmount(List<dynamic> jsonList) {

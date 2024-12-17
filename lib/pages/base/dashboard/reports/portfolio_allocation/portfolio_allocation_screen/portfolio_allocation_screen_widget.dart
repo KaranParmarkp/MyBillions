@@ -257,7 +257,7 @@ class _PortfolioAllocationScreenWidgetState
                                         donutHoleRadius: 0.0,
                                         donutHoleColor: Colors.transparent,
                                         sectionLabelType:
-                                            PieChartSectionLabelType.value,
+                                            PieChartSectionLabelType.percent,
                                         sectionLabelStyle: FlutterFlowTheme.of(
                                                 context)
                                             .headlineSmall
@@ -277,7 +277,9 @@ class _PortfolioAllocationScreenWidgetState
                                         labelFormatter: LabelFormatter(
                                           numberFormat: (val) => formatNumber(
                                             val,
-                                            formatType: FormatType.percent,
+                                            formatType: FormatType.decimal,
+                                            decimalType:
+                                                DecimalType.periodDecimal,
                                           ),
                                         ),
                                       ),

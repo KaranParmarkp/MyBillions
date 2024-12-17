@@ -1017,6 +1017,11 @@ class GoalWiseReportCall {
           .map((x) => castToType<double>(x))
           .withoutNulls
           .toList();
+  List? trendingReports(dynamic response) => getJsonField(
+        response,
+        r'''$.trendingReports''',
+        true,
+      ) as List?;
 }
 
 class PortfolioAllocationCall {

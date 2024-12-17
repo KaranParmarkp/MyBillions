@@ -220,7 +220,8 @@ class _DebtWiseWidgetState extends State<DebtWiseWidget> {
                             Builder(
                               builder: (context) {
                                 final categoryList = getJsonField(
-                                  widget!.debtJson?[debtJsonListIndex],
+                                  widget!.debtJson
+                                      ?.elementAtOrNull(debtJsonListIndex),
                                   r'''$.Categorylist''',
                                 ).toList();
 

@@ -952,6 +952,30 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
+    'ehlb4h6x': {
+      'en': 'Buy More',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'jk7etltd': {
+      'en': 'SIP',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '2sjbfh8e': {
+      'en': 'SWP',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '2tren47u': {
+      'en': 'Reedem',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
   },
   // reports
   {
@@ -1326,7 +1350,7 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': '',
     },
     'pkgcqiyg': {
-      'en': 'Annual',
+      'en': 'Monthly',
       'ar': '',
       'de': '',
       'es': '',
@@ -1381,6 +1405,42 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'nfdqm1te': {
       'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'msliuoz5': {
+      'en': 'From',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'xioe6c4n': {
+      'en': 'To',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'mzwog2nh': {
+      'en': 'Net Gain',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'aaqu8l0s': {
+      'en': 'Absolute Gain(%)\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'xnasy1xj': {
+      'en': 'Index (%)\t',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '4uuwoght': {
+      'en': 'Return Performance(%)',
       'ar': '',
       'de': '',
       'es': '',

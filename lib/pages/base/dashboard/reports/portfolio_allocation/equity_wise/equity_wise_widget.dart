@@ -221,7 +221,8 @@ class _EquityWiseWidgetState extends State<EquityWiseWidget> {
                             Builder(
                               builder: (context) {
                                 final categoryList = getJsonField(
-                                  widget!.equityJson?[equityJsonListIndex],
+                                  widget!.equityJson
+                                      ?.elementAtOrNull(equityJsonListIndex),
                                   r'''$.Categorylist''',
                                 ).toList();
 

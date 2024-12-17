@@ -781,18 +781,20 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
-                                                                  color: functions
-                                                                      .checkPositiveValueColor(
-                                                                          valueOrDefault<
+                                                                  color: valueOrDefault<
                                                                               double>(
-                                                                    MyBillionsApiGroupGroup
-                                                                        .performanceReportDataCall
-                                                                        .returnPerf1Year(
-                                                                      performanceCardPerformanceReportDataResponse
-                                                                          .jsonBody,
-                                                                    ),
-                                                                    0.0,
-                                                                  )),
+                                                                            MyBillionsApiGroupGroup.performanceReportDataCall.returnPerf1Year(
+                                                                              performanceCardPerformanceReportDataResponse.jsonBody,
+                                                                            ),
+                                                                            0.0,
+                                                                          ) <
+                                                                          100.0
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1003,18 +1005,20 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
-                                                                  color: functions
-                                                                      .checkPositiveValueColor(
-                                                                          valueOrDefault<
+                                                                  color: valueOrDefault<
                                                                               double>(
-                                                                    MyBillionsApiGroupGroup
-                                                                        .performanceReportDataCall
-                                                                        .returnPerf6Month(
-                                                                      performanceCardPerformanceReportDataResponse
-                                                                          .jsonBody,
-                                                                    ),
-                                                                    0.0,
-                                                                  )),
+                                                                            MyBillionsApiGroupGroup.performanceReportDataCall.returnPerf6Month(
+                                                                              performanceCardPerformanceReportDataResponse.jsonBody,
+                                                                            ),
+                                                                            0.0,
+                                                                          ) <
+                                                                          100.0
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1225,18 +1229,20 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
-                                                                  color: functions
-                                                                      .checkPositiveValueColor(
-                                                                          valueOrDefault<
+                                                                  color: valueOrDefault<
                                                                               double>(
-                                                                    MyBillionsApiGroupGroup
-                                                                        .performanceReportDataCall
-                                                                        .returnPerf3Month(
-                                                                      performanceCardPerformanceReportDataResponse
-                                                                          .jsonBody,
-                                                                    ),
-                                                                    0.0,
-                                                                  )),
+                                                                            MyBillionsApiGroupGroup.performanceReportDataCall.returnPerf3Month(
+                                                                              performanceCardPerformanceReportDataResponse.jsonBody,
+                                                                            ),
+                                                                            0.0,
+                                                                          ) <
+                                                                          100.0
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1447,18 +1453,20 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
-                                                                  color: functions
-                                                                      .checkPositiveValueColor(
-                                                                          valueOrDefault<
+                                                                  color: valueOrDefault<
                                                                               double>(
-                                                                    MyBillionsApiGroupGroup
-                                                                        .performanceReportDataCall
-                                                                        .returnPerf1Month(
-                                                                      performanceCardPerformanceReportDataResponse
-                                                                          .jsonBody,
-                                                                    ),
-                                                                    0.0,
-                                                                  )),
+                                                                            MyBillionsApiGroupGroup.performanceReportDataCall.returnPerf1Month(
+                                                                              performanceCardPerformanceReportDataResponse.jsonBody,
+                                                                            ),
+                                                                            0.0,
+                                                                          ) <
+                                                                          100.0
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1669,18 +1677,20 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
-                                                                  color: functions
-                                                                      .checkPositiveValueColor(
-                                                                          valueOrDefault<
+                                                                  color: valueOrDefault<
                                                                               double>(
-                                                                    MyBillionsApiGroupGroup
-                                                                        .performanceReportDataCall
-                                                                        .returnPerf15Days(
-                                                                      performanceCardPerformanceReportDataResponse
-                                                                          .jsonBody,
-                                                                    ),
-                                                                    0.0,
-                                                                  )),
+                                                                            MyBillionsApiGroupGroup.performanceReportDataCall.returnPerf15Days(
+                                                                              performanceCardPerformanceReportDataResponse.jsonBody,
+                                                                            ),
+                                                                            0.0,
+                                                                          ) <
+                                                                          100.0
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -1894,18 +1904,20 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
-                                                                  color: functions
-                                                                      .checkPositiveValueColor(
-                                                                          valueOrDefault<
+                                                                  color: valueOrDefault<
                                                                               double>(
-                                                                    MyBillionsApiGroupGroup
-                                                                        .performanceReportDataCall
-                                                                        .returnPerf1Week(
-                                                                      performanceCardPerformanceReportDataResponse
-                                                                          .jsonBody,
-                                                                    ),
-                                                                    0.0,
-                                                                  )),
+                                                                            MyBillionsApiGroupGroup.performanceReportDataCall.returnPerf1Week(
+                                                                              performanceCardPerformanceReportDataResponse.jsonBody,
+                                                                            ),
+                                                                            0.0,
+                                                                          ) <
+                                                                          100.0
+                                                                      ? FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .error
+                                                                      : FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
                                                                   fontSize:
                                                                       14.0,
                                                                   letterSpacing:
@@ -2050,19 +2062,27 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        formatNumber(
-                                                          functions
-                                                              .toDoubleRound(
-                                                                  getJsonField(
-                                                            goalsListviewItem,
-                                                            r'''$.CurrentAmount''',
-                                                          ).toString()),
-                                                          formatType: FormatType
-                                                              .decimal,
-                                                          decimalType:
-                                                              DecimalType
-                                                                  .automatic,
-                                                          currency: '₹',
+                                                        valueOrDefault<String>(
+                                                          formatNumber(
+                                                            functions
+                                                                .toDoubleRound(
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                              getJsonField(
+                                                                goalsListviewItem,
+                                                                r'''$.CurrentAmount''',
+                                                              )?.toString(),
+                                                              '0',
+                                                            )),
+                                                            formatType:
+                                                                FormatType
+                                                                    .decimal,
+                                                            decimalType:
+                                                                DecimalType
+                                                                    .automatic,
+                                                            currency: '₹',
+                                                          ),
+                                                          '0',
                                                         ),
                                                         textAlign:
                                                             TextAlign.center,
@@ -2145,19 +2165,27 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                         MainAxisSize.max,
                                                     children: [
                                                       Text(
-                                                        formatNumber(
-                                                          functions
-                                                              .toDoubleRound(
-                                                                  getJsonField(
-                                                            goalsListviewItem,
-                                                            r'''$.Appreciation''',
-                                                          ).toString()),
-                                                          formatType: FormatType
-                                                              .decimal,
-                                                          decimalType:
-                                                              DecimalType
-                                                                  .automatic,
-                                                          currency: '₹',
+                                                        valueOrDefault<String>(
+                                                          formatNumber(
+                                                            functions
+                                                                .toDoubleRound(
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                              getJsonField(
+                                                                goalsListviewItem,
+                                                                r'''$.Appreciation''',
+                                                              )?.toString(),
+                                                              '0',
+                                                            )),
+                                                            formatType:
+                                                                FormatType
+                                                                    .decimal,
+                                                            decimalType:
+                                                                DecimalType
+                                                                    .automatic,
+                                                            currency: '₹',
+                                                          ),
+                                                          '0',
                                                         ),
                                                         textAlign:
                                                             TextAlign.center,
@@ -2251,7 +2279,7 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                             goalsListviewItem,
                                                             r'''$.XIIRPercentage''',
                                                           )?.toString(),
-                                                          '0',
+                                                          '0.00',
                                                         )}%',
                                                         textAlign:
                                                             TextAlign.center,
@@ -2316,6 +2344,137 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                 ),
                                               ),
                                             ],
+                                          ),
+                                          Divider(
+                                            height: 1.0,
+                                            thickness: 1.0,
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10.0, 10.0, 10.0, 10.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'ehlb4h6x' /* Buy More */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    'jk7etltd' /* SIP */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '2sjbfh8e' /* SWP */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                                Text(
+                                                  FFLocalizations.of(context)
+                                                      .getText(
+                                                    '2tren47u' /* Reedem */,
+                                                  ),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMediumFamily,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        useGoogleFonts: GoogleFonts
+                                                                .asMap()
+                                                            .containsKey(
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMediumFamily),
+                                                      ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),

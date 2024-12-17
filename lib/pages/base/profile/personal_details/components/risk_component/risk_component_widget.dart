@@ -182,7 +182,8 @@ class _RiskComponentWidgetState extends State<RiskComponentWidget> {
           Padding(
             padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
             child: Text(
-              FFAppConstants.riskList[_model.currentRiskScore + 1],
+              FFAppConstants.riskList
+                  .elementAtOrNull(_model.currentRiskScore + 1)!,
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.of(context).bodyMedium.override(
                     fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,

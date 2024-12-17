@@ -72,7 +72,10 @@ class _PersonalDetailsScreenWidgetState
             snapshot.data!;
 
         return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
           child: Scaffold(
             key: scaffoldKey,
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -308,9 +311,14 @@ class _PersonalDetailsScreenWidgetState
                                                               Directionality.of(
                                                                   context)),
                                                   child: GestureDetector(
-                                                    onTap: () => FocusScope.of(
-                                                            dialogContext)
-                                                        .unfocus(),
+                                                    onTap: () {
+                                                      FocusScope.of(
+                                                              dialogContext)
+                                                          .unfocus();
+                                                      FocusManager
+                                                          .instance.primaryFocus
+                                                          ?.unfocus();
+                                                    },
                                                     child: RiskComponentWidget(
                                                       riskScore: int.parse(_model
                                                           .riskScoreModel
@@ -575,7 +583,7 @@ class _PersonalDetailsScreenWidgetState
                                                           FFLocalizations.of(
                                                                   context)
                                                               .getText(
-                                                            'fpqe7r2x' /* NRI (USACanada) */,
+                                                            'fpqe7r2x' /* NRI (USA/Canada) */,
                                                           ),
                                                           FFLocalizations.of(
                                                                   context)

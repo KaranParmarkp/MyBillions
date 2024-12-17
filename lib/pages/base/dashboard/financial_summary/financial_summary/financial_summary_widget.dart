@@ -2197,12 +2197,19 @@ class _FinancialSummaryWidgetState extends State<FinancialSummaryWidget> {
                                                                   fontFamily: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMediumFamily,
-                                                                  color: functions.checkPositiveValueColor(functions
-                                                                      .toDoubleRound(getJsonField(
-                                                                        goalsListviewItem,
-                                                                        r'''$.Appreciation''',
-                                                                      ).toString())
-                                                                      .toDouble()),
+                                                                  color: functions
+                                                                      .checkPositiveValueColor(
+                                                                          valueOrDefault<
+                                                                              double>(
+                                                                    functions
+                                                                        .toDoubleRound(
+                                                                            getJsonField(
+                                                                          goalsListviewItem,
+                                                                          r'''$.Appreciation''',
+                                                                        ).toString())
+                                                                        .toDouble(),
+                                                                    0.0,
+                                                                  )),
                                                                   fontSize:
                                                                       12.0,
                                                                   letterSpacing:

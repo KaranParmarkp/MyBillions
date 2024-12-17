@@ -276,20 +276,20 @@ int numberIncrementDecrement(
       : (number <= 0 ? 0 : number - 1);
 }
 
-Color checkPositiveValueColor(double value) {
-  if (value > 0) {
+Color checkPositiveValueColor(double? value) {
+  if ((value ?? 0) > 0) {
     return Colors.green; // Return green if value is positive
-  } else if (value < 0) {
+  } else if ((value ?? 0) < 0) {
     return Colors.red; // Return red if value is negative
   } else {
     return Colors.white; // Return white if value is 0
   }
 }
 
-int toDoubleRound(String amount) {
+int toDoubleRound(String? amount) {
   //final formatter = NumberFormat('#,##,###');
   //return formatter.format(double.parse(amount).round());
-  return double.parse(amount == "" ? "0" : amount).round();
+  return double.parse((amount == "" || amount == null) ? "0" : amount).round();
 }
 
 double schemeTotalAmount(List<dynamic> jsonList) {

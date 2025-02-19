@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/base/dashboard/reports/portfolio_allocation/debt_wise/debt_wise_widget.dart';
 import '/pages/base/dashboard/reports/portfolio_allocation/equity_wise/equity_wise_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'portfolio_allocation_screen_widget.dart'
     show PortfolioAllocationScreenWidget;

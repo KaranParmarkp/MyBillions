@@ -10,6 +10,7 @@ import '/pages/base/dashboard/financial_summary/financial_summary/financial_summ
 import '/pages/base/dashboard/recommendations/recommendations_list/recommendations_list_widget.dart';
 import '/pages/base/dashboard/reports/reports/reports_widget.dart';
 import '/pages/base/dashboard/trend_analysis/trend_analysis_screen/trend_analysis_screen_widget.dart';
+import 'dart:ui';
 import 'dashboard_screen_widget.dart' show DashboardScreenWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

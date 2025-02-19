@@ -1,5 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,9 +12,13 @@ class GoalCardWidget extends StatefulWidget {
   const GoalCardWidget({
     super.key,
     required this.goalOnTap,
+    required this.title,
+    required this.desc,
   });
 
   final Future Function()? goalOnTap;
+  final String? title;
+  final String? desc;
 
   @override
   State<GoalCardWidget> createState() => _GoalCardWidgetState();
@@ -90,8 +95,9 @@ class _GoalCardWidgetState extends State<GoalCardWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 5.0),
                       child: Text(
-                        FFLocalizations.of(context).getText(
-                          'weujmlhs' /* Tax Saving 123 */,
+                        valueOrDefault<String>(
+                          widget!.title,
+                          'title',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
@@ -106,8 +112,9 @@ class _GoalCardWidgetState extends State<GoalCardWidget> {
                       ),
                     ),
                     Text(
-                      FFLocalizations.of(context).getText(
-                        'x4k1g3gz' /* Save up to Rs. 45,000 in taxes... */,
+                      valueOrDefault<String>(
+                        widget!.desc,
+                        'desc',
                       ),
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
                             fontFamily:

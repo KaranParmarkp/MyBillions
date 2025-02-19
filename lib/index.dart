@@ -23,3 +23,7 @@ export '/pages/base/goals/tax_saving/text_saving_screen/text_saving_screen_widge
     show TextSavingScreenWidget;
 export '/pages/base/goals/tax_saving/text_saving_questions_screen/text_saving_questions_screen_widget.dart'
     show TextSavingQuestionsScreenWidget;
+export '/pages/base/goals/financial_goal/financial_question_screen/financial_question_screen_widget.dart'
+    show FinancialQuestionScreenWidget;
+export '/pages/base/goals/financial_goal/financial_screen/financial_screen_widget.dart'
+    show FinancialScreenWidget;

@@ -23,6 +23,8 @@ export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
 
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
+
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
 
@@ -80,6 +82,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
+      navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
           appStateNotifier.loggedIn ? NavBarPage() : SignInScreenWidget(),
       routes: [
@@ -172,6 +175,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   ParamType.String,
                 ),
               ),
+            ),
+            FFRoute(
+              name: 'financial_question_screen',
+              path: 'financialQuestionScreen',
+              requireAuth: true,
+              builder: (context, params) => FinancialQuestionScreenWidget(
+                planName: params.getParam(
+                  'planName',
+                  ParamType.String,
+                ),
+              ),
+            ),
+            FFRoute(
+              name: 'financial_screen',
+              path: 'financialScreen',
+              requireAuth: true,
+              builder: (context, params) => FinancialScreenWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

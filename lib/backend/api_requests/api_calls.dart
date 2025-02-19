@@ -14,7 +14,8 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start MyBillionsApiGroup Group Code
 
 class MyBillionsApiGroupGroup {
-  static String getBaseUrl() => 'http://beta.mybillions.in/platform/API/api/';
+  static String getBaseUrl() =>
+      'https://Portal.mybillions.in/platform/API/api/';
   static Map<String, String> headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };
@@ -40,6 +41,7 @@ class MyBillionsApiGroupGroup {
   static PortfolioAllocationCall portfolioAllocationCall =
       PortfolioAllocationCall();
   static TaxSavingCall taxSavingCall = TaxSavingCall();
+  static CapitalGainCall capitalGainCall = CapitalGainCall();
 }
 
 class SignInCall {
@@ -1225,6 +1227,52 @@ class TaxSavingCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class CapitalGainCall {
+  Future<ApiCallResponse> call({
+    String? customerId = '',
+    String? investorID = '',
+    String? category = '',
+    String? term = '',
+    String? fYear = '',
+  }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'capital gain',
+      apiUrl: '${baseUrl}/Report/getCapitalGainReport',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'CustomerId': customerId,
+        'InvestorID': investorID,
+        'Category': category,
+        'Term': term,
+        'FYear': fYear,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List? investors(dynamic response) => getJsonField(
+        response,
+        r'''$.Investors''',
+        true,
+      ) as List?;
+  List? investorsCategory(dynamic response) => getJsonField(
+        response,
+        r'''$.Investors[:].Category''',
+        true,
+      ) as List?;
 }
 
 /// End MyBillionsApiGroup Group Code

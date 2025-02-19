@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/pages/base/profile/personal_details/components/risk_component/risk_component_widget.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -331,26 +332,6 @@ class _PersonalDetailsScreenWidgetState
                                                                   .textfieldTextController
                                                                   ?.text =
                                                               score!.toString();
-                                                          _model.riskScoreModel
-                                                              .textfieldFocusNode
-                                                              ?.requestFocus();
-                                                          WidgetsBinding
-                                                              .instance
-                                                              .addPostFrameCallback(
-                                                                  (_) {
-                                                            _model
-                                                                    .riskScoreModel
-                                                                    .textfieldTextController
-                                                                    ?.selection =
-                                                                TextSelection
-                                                                    .collapsed(
-                                                              offset: _model
-                                                                  .riskScoreModel
-                                                                  .textfieldTextController!
-                                                                  .text
-                                                                  .length,
-                                                            );
-                                                          });
                                                         });
                                                       },
                                                     ),

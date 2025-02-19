@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -480,6 +481,12 @@ class _PfFiltersWidgetState extends State<PfFiltersWidget> {
                                   _datePicked1Date.day,
                                 );
                               });
+                            } else if (_model.datePicked1 != null) {
+                              safeSetState(() {
+                                _model.datePicked1 =
+                                    DateTime.fromMicrosecondsSinceEpoch(
+                                        1555353000000000);
+                              });
                             }
                             _model.updateLocalRequestModelStruct(
                               (e) => e
@@ -611,6 +618,12 @@ class _PfFiltersWidgetState extends State<PfFiltersWidget> {
                                   _datePicked2Date.month,
                                   _datePicked2Date.day,
                                 );
+                              });
+                            } else if (_model.datePicked2 != null) {
+                              safeSetState(() {
+                                _model.datePicked2 =
+                                    DateTime.fromMicrosecondsSinceEpoch(
+                                        1555353000000000);
                               });
                             }
                             _model.updateLocalRequestModelStruct(

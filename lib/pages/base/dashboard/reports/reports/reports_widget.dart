@@ -2,8 +2,10 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/pages/base/dashboard/reports/capital_gain/capital_gain_list/capital_gain_list_widget.dart';
 import '/pages/base/dashboard/reports/portfolio_allocation/portfolio_allocation_screen/portfolio_allocation_screen_widget.dart';
 import '/pages/base/dashboard/reports/portfolio_summery/portfolio_list/portfolio_list_widget.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -129,6 +131,14 @@ class _ReportsWidgetState extends State<ReportsWidget> {
                 model: _model.portfolioAllocationScreenModel,
                 updateCallback: () => safeSetState(() {}),
                 child: PortfolioAllocationScreenWidget(),
+              ),
+            ),
+          if (_model.dropDownValue == 'Capital Gain')
+            Expanded(
+              child: wrapWithModel(
+                model: _model.capitalGainListModel,
+                updateCallback: () => safeSetState(() {}),
+                child: CapitalGainListWidget(),
               ),
             ),
         ],

@@ -1,6 +1,7 @@
 import '/components/app_logo_new_2/app_logo_new2_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'dart:ui';
 import 'appbar_logo_widget.dart' show AppbarLogoWidget;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';

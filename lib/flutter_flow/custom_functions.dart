@@ -289,7 +289,9 @@ Color checkPositiveValueColor(double? value) {
 int toDoubleRound(String? amount) {
   //final formatter = NumberFormat('#,##,###');
   //return formatter.format(double.parse(amount).round());
-  return double.parse((amount == "" || amount == null) ? "0" : amount).round();
+  return double.parse(
+          (amount == "" || amount == null || amount == "null") ? "0" : amount)
+      .round();
 }
 
 double schemeTotalAmount(List<dynamic> jsonList) {
@@ -312,6 +314,8 @@ int toInt(dynamic number) {
 String savePlanFunction(List<String> list) {
   if (list.length == 2) {
     return "StartingBalance:${list[0]},Lumpsum:${list[0]},MonthlyInvestment:${list[1]},YEARS:3000,Expense:0,MONTHLYTOTALCONTRIBUTION:0,TrackStatus:0,FutureValue:0,MonthlyInvestmentRequired:0";
+  } else if (list.length == 4) {
+    return "Expense:${list[0]},YEARS:${list[1]},StartingBalance:${list[2]},Lumpsum:${list[2]},MonthlyInvestment:${list[3]},MONTHLYTOTALCONTRIBUTION:0,TrackStatus:0,FutureValue:0,MonthlyInvestmentRequired:0";
   } else {
     return "";
   }
@@ -339,4 +343,12 @@ int getPlanId(
     }
   }
   return 0;
+}
+
+String returnAllDropdownValue(String data) {
+  if (data == "All") {
+    return "0";
+  } else {
+    return data;
+  }
 }

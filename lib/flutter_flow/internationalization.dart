@@ -154,6 +154,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
+    'houe2s3t': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
     '1adj995k': {
       'en': 'Financial Summary',
       'ar': '',
@@ -174,12 +180,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '9s3j5jon': {
       'en': 'Trend Analysis',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'houe2s3t': {
-      'en': 'Search for an item...',
       'ar': '',
       'de': '',
       'es': '',
@@ -493,14 +493,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
   },
   // personal_details_screen
   {
-    'xixf5l8f': {
-      'en': 'Option 1',
+    '603j649y': {
+      'en': 'Search for an item...',
       'ar': '',
       'de': '',
       'es': '',
     },
-    '603j649y': {
-      'en': 'Search for an item...',
+    'xixf5l8f': {
+      'en': 'Option 1',
       'ar': '',
       'de': '',
       'es': '',
@@ -764,6 +764,66 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': '',
     },
   },
+  // financial_question_screen
+  {
+    '3yd162ao': {
+      'en': 'Field is required',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '4lj0ad6l': {
+      'en': 'Please choose an option from the dropdown',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'lmgqmby8': {
+      'en': ' ',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '5rt5zgeq': {
+      'en': 'Home',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // financial_screen
+  {
+    're9oaxjw': {
+      'en': 'Write a name for Financial goal plan.',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'c7zp44hs': {
+      'en': 'Name is required',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'r7568gcn': {
+      'en': 'Please choose an option from the dropdown',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'ab1i1buo': {
+      'en': ' ',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'b61zqpyn': {
+      'en': 'Home',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
   // recommendation_component
   {
     'j9bdev43': {
@@ -985,6 +1045,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
+    'xdjfrw5c': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
     '2s8ciah3': {
       'en': 'Portfolio Summary',
       'ar': '',
@@ -1015,12 +1081,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
-    'xdjfrw5c': {
-      'en': 'Search for an item...',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
   },
   // pf_filters
   {
@@ -1042,12 +1102,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
-    'u69909x8': {
-      'en': 'US PFIC',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
     '4jyp6nyx': {
       'en': 'All',
       'ar': '',
@@ -1060,6 +1114,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
+    'u69909x8': {
+      'en': 'US PFIC',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
     'n1i2nl2q': {
       'en': 'Goals',
       'ar': '',
@@ -1068,6 +1128,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'pgzgs0xq': {
       'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'nlk8y97j': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'iau4r46d': {
+      'en': 'Search for an item...',
       'ar': '',
       'de': '',
       'es': '',
@@ -1102,20 +1174,14 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
-    'nlk8y97j': {
-      'en': 'All',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'iau4r46d': {
-      'en': 'Search for an item...',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
     'dofqtu08': {
       'en': 'Category',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'gdoqlc72': {
+      'en': 'Search for an item...',
       'ar': '',
       'de': '',
       'es': '',
@@ -1134,12 +1200,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'jr7vqomw': {
       'en': 'Debt',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'gdoqlc72': {
-      'en': 'Search for an item...',
       'ar': '',
       'de': '',
       'es': '',
@@ -1325,22 +1385,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'es': '',
     },
   },
-  // goal_card
-  {
-    'weujmlhs': {
-      'en': 'Tax Saving 123',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'x4k1g3gz': {
-      'en':
-          'Save up to Rs. 45,000 in taxes by investing into the best tax saving funds, backed by our research',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-  },
   // trend_analysis_screen
   {
     'lug01lmo': {
@@ -1351,6 +1395,18 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'pkgcqiyg': {
       'en': 'Monthly',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'xx79eyy3': {
+      'en': '',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'qdoxxyct': {
+      'en': 'Search for an item...',
       'ar': '',
       'de': '',
       'es': '',
@@ -1369,18 +1425,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     '9eu8thz6': {
       'en': 'Annual',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'xx79eyy3': {
-      'en': '',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
-    'qdoxxyct': {
-      'en': 'Search for an item...',
       'ar': '',
       'de': '',
       'es': '',
@@ -1460,12 +1504,6 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
       'de': '',
       'es': '',
     },
-    'h1otyq52': {
-      'en': 'All',
-      'ar': '',
-      'de': '',
-      'es': '',
-    },
     '4dgpdz1c': {
       'en': 'All',
       'ar': '',
@@ -1474,6 +1512,12 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'dfht33wy': {
       'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'bu343dm9': {
+      'en': 'All',
       'ar': '',
       'de': '',
       'es': '',
@@ -1561,6 +1605,234 @@ final kTranslationsMap = <Map<String, Map<String, String>>>[
     },
     'nbbyzjm5': {
       'en': 'Total',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // capital_gain_list
+  {
+    'sf5c1ddp': {
+      'en': 'Folio No.',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'c2zjlzxw': {
+      'en': 'Sales Date',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '239a61hs': {
+      'en': 'Unit',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '2m1lknra': {
+      'en': 'Sales Rate (INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'wu5apjoa': {
+      'en': 'Sales Amount (INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '824b6odm': {
+      'en': 'Purchase Date',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'yx2c1ex6': {
+      'en': 'Purchase  Rate (INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'vfo0jfam': {
+      'en': 'Purchase Cost (INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'bx79kfd5': {
+      'en': 'STG (INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'jyo49vt5': {
+      'en': 'LTG (INR)',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'qjs3v96a': {
+      'en': 'STT',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '7ecs49is': {
+      'en': '0',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'sbx6an9q': {
+      'en': 'Total Sale Amount',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'hgcjurwx': {
+      'en': 'Total Purchase Cost',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+  },
+  // cp_filters
+  {
+    'wo5s2qcg': {
+      'en': 'Filters',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'wqnwyq2z': {
+      'en': 'Applicant',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'lkmsu4bm': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'awar9d0i': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'dwi6su8u': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'yklgpsmd': {
+      'en': 'US PFIC',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'c4wlv8vc': {
+      'en': 'Category',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'sv93zjqa': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '8idh7bj2': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'b7831221': {
+      'en': 'Equity',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'dqwkuwyi': {
+      'en': 'Debt',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'i8welzxv': {
+      'en': 'Terms',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'bp9rg12n': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'xtbfo4pk': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'sw1rw1f4': {
+      'en': 'Short Term',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'v20a6yex': {
+      'en': 'Long Term',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'v8pzae4q': {
+      'en': 'Year',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'pochh0rr': {
+      'en': 'Search for an item...',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'kjy4rq5a': {
+      'en': 'All',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    '15465pk3': {
+      'en': '2021',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'gq9rnwty': {
+      'en': '2022',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'admfv004': {
+      'en': '2023',
+      'ar': '',
+      'de': '',
+      'es': '',
+    },
+    'hwymgsfq': {
+      'en': '2024',
       'ar': '',
       'de': '',
       'es': '',

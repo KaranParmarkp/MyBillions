@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,9 @@ export 'goal_screen_model.dart';
 
 class GoalScreenWidget extends StatefulWidget {
   const GoalScreenWidget({super.key});
+
+  static String routeName = 'goal_screen';
+  static String routePath = 'goalScreen';
 
   @override
   State<GoalScreenWidget> createState() => _GoalScreenWidgetState();
@@ -80,7 +84,7 @@ class _GoalScreenWidgetState extends State<GoalScreenWidget> {
                           desc:
                               'Save up to Rs. 45,000 in taxes by investing into the best tax saving funds, backed by our research',
                           goalOnTap: () async {
-                            context.pushNamed('text_saving_screen');
+                            context.pushNamed(TextSavingScreenWidget.routeName);
                           },
                         ),
                       ),
@@ -96,7 +100,7 @@ class _GoalScreenWidgetState extends State<GoalScreenWidget> {
                           desc:
                               'Whatever be your financial goals and time horizon, we will help you invest into the best portfolio, to ensure that you achieve your targets',
                           goalOnTap: () async {
-                            context.pushNamed('financial_screen');
+                            context.pushNamed(FinancialScreenWidget.routeName);
                           },
                         ),
                       ),

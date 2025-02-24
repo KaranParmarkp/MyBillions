@@ -10,13 +10,14 @@ import '/backend/schema/structs/index.dart';
 
 import '/auth/custom_auth/custom_auth_user_provider.dart';
 
-import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/lat_lng.dart';
 import '/flutter_flow/place.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'serialization_util.dart';
+
+import '/index.dart';
 
 export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
@@ -31,8 +32,8 @@ class AppStateNotifier extends ChangeNotifier {
   static AppStateNotifier? _instance;
   static AppStateNotifier get instance => _instance ??= AppStateNotifier._();
 
-  MyFlutterAppKPAuthUser? initialUser;
-  MyFlutterAppKPAuthUser? user;
+  MyBillionsAuthUser? initialUser;
+  MyBillionsAuthUser? user;
   bool showSplashImage = true;
   String? _redirectLocation;
 
@@ -57,7 +58,7 @@ class AppStateNotifier extends ChangeNotifier {
   /// to perform subsequent actions (such as navigation) afterwards.
   void updateNotifyOnAuthChange(bool notify) => notifyOnAuthChange = notify;
 
-  void update(MyFlutterAppKPAuthUser newUser) {
+  void update(MyBillionsAuthUser newUser) {
     final shouldUpdate =
         user?.uid == null || newUser.uid == null || user?.uid != newUser.uid;
     initialUser ??= newUser;
@@ -93,31 +94,31 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? NavBarPage() : SignInScreenWidget(),
           routes: [
             FFRoute(
-              name: 'dashboard_screen',
-              path: 'dashboardScreen',
+              name: DashboardScreenWidget.routeName,
+              path: DashboardScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'dashboard_screen')
                   : DashboardScreenWidget(),
             ),
             FFRoute(
-              name: 'sign_in_screen',
-              path: 'signInScreen',
+              name: SignInScreenWidget.routeName,
+              path: SignInScreenWidget.routePath,
               builder: (context, params) => SignInScreenWidget(),
             ),
             FFRoute(
-              name: 'forgot_password_screen',
-              path: 'forgotPasswordScreen',
+              name: ForgotPasswordScreenWidget.routeName,
+              path: ForgotPasswordScreenWidget.routePath,
               builder: (context, params) => ForgotPasswordScreenWidget(),
             ),
             FFRoute(
-              name: 'sign_up_screen',
-              path: 'signUpScreen',
+              name: SignUpScreenWidget.routeName,
+              path: SignUpScreenWidget.routePath,
               builder: (context, params) => SignUpScreenWidget(),
             ),
             FFRoute(
-              name: 'reset_password_screen',
-              path: 'resetPasswordScreen',
+              name: ResetPasswordScreenWidget.routeName,
+              path: ResetPasswordScreenWidget.routePath,
               builder: (context, params) => ResetPasswordScreenWidget(
                 email: params.getParam(
                   'email',
@@ -126,48 +127,48 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'goal_screen',
-              path: 'goalScreen',
+              name: GoalScreenWidget.routeName,
+              path: GoalScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'goal_screen')
                   : GoalScreenWidget(),
             ),
             FFRoute(
-              name: 'profile_screen',
-              path: 'profileScreen',
+              name: ProfileScreenWidget.routeName,
+              path: ProfileScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'profile_screen')
                   : ProfileScreenWidget(),
             ),
             FFRoute(
-              name: 'personal_details_screen',
-              path: 'personalDetailsScreen',
+              name: PersonalDetailsScreenWidget.routeName,
+              path: PersonalDetailsScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => PersonalDetailsScreenWidget(),
             ),
             FFRoute(
-              name: 'fees_details_screen',
-              path: 'feesDetailsScreen',
+              name: FeesDetailsScreenWidget.routeName,
+              path: FeesDetailsScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => FeesDetailsScreenWidget(),
             ),
             FFRoute(
-              name: 'client_screen',
-              path: 'clientScreen',
+              name: ClientScreenWidget.routeName,
+              path: ClientScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => ClientScreenWidget(),
             ),
             FFRoute(
-              name: 'text_saving_screen',
-              path: 'textSavingScreen',
+              name: TextSavingScreenWidget.routeName,
+              path: TextSavingScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => TextSavingScreenWidget(),
             ),
             FFRoute(
-              name: 'text_saving_questions_screen',
-              path: 'textSavingQuestionsScreen',
+              name: TextSavingQuestionsScreenWidget.routeName,
+              path: TextSavingQuestionsScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => TextSavingQuestionsScreenWidget(
                 planName: params.getParam(
@@ -177,8 +178,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'financial_question_screen',
-              path: 'financialQuestionScreen',
+              name: FinancialQuestionScreenWidget.routeName,
+              path: FinancialQuestionScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => FinancialQuestionScreenWidget(
                 planName: params.getParam(
@@ -188,8 +189,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ),
             ),
             FFRoute(
-              name: 'financial_screen',
-              path: 'financialScreen',
+              name: FinancialScreenWidget.routeName,
+              path: FinancialScreenWidget.routePath,
               requireAuth: true,
               builder: (context, params) => FinancialScreenWidget(),
             )

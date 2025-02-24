@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,6 +17,9 @@ export 'forgot_password_screen_model.dart';
 
 class ForgotPasswordScreenWidget extends StatefulWidget {
   const ForgotPasswordScreenWidget({super.key});
+
+  static String routeName = 'forgot_password_screen';
+  static String routePath = 'forgotPasswordScreen';
 
   @override
   State<ForgotPasswordScreenWidget> createState() =>
@@ -196,7 +200,7 @@ class _ForgotPasswordScreenWidgetState
                                       );
 
                                       context.pushNamed(
-                                        'reset_password_screen',
+                                        ResetPasswordScreenWidget.routeName,
                                         queryParameters: {
                                           'email': serializeParam(
                                             _model.emailTexfieldModel

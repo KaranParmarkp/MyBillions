@@ -8,6 +8,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,6 +23,9 @@ class FinancialQuestionScreenWidget extends StatefulWidget {
   });
 
   final String? planName;
+
+  static String routeName = 'financial_question_screen';
+  static String routePath = 'financialQuestionScreen';
 
   @override
   State<FinancialQuestionScreenWidget> createState() =>
@@ -246,7 +250,8 @@ class _FinancialQuestionScreenWidgetState
                                   ),
                                 );
 
-                                context.goNamed('dashboard_screen');
+                                context
+                                    .goNamed(DashboardScreenWidget.routeName);
                               }
                             }
                           }

@@ -16,6 +16,9 @@ export 'fees_details_screen_model.dart';
 class FeesDetailsScreenWidget extends StatefulWidget {
   const FeesDetailsScreenWidget({super.key});
 
+  static String routeName = 'fees_details_screen';
+  static String routePath = 'feesDetailsScreen';
+
   @override
   State<FeesDetailsScreenWidget> createState() =>
       _FeesDetailsScreenWidgetState();

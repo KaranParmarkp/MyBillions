@@ -21,6 +21,9 @@ export 'dashboard_screen_model.dart';
 class DashboardScreenWidget extends StatefulWidget {
   const DashboardScreenWidget({super.key});
 
+  static String routeName = 'dashboard_screen';
+  static String routePath = 'dashboardScreen';
+
   @override
   State<DashboardScreenWidget> createState() => _DashboardScreenWidgetState();
 }

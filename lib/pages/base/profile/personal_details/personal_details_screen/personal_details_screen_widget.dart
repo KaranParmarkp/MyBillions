@@ -22,6 +22,9 @@ export 'personal_details_screen_model.dart';
 class PersonalDetailsScreenWidget extends StatefulWidget {
   const PersonalDetailsScreenWidget({super.key});
 
+  static String routeName = 'personal_details_screen';
+  static String routePath = 'personalDetailsScreen';
+
   @override
   State<PersonalDetailsScreenWidget> createState() =>
       _PersonalDetailsScreenWidgetState();

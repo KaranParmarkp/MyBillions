@@ -51,7 +51,12 @@ class _MyAppState extends State<MyApp> {
     return matchList.uri.toString();
   }
 
-  late Stream<MyFlutterAppKPAuthUser> userStream;
+  List<String> getRouteStack() =>
+      _router.routerDelegate.currentConfiguration.matches
+          .map((e) => getRoute(e))
+          .toList();
+
+  late Stream<MyBillionsAuthUser> userStream;
 
   @override
   void initState() {
@@ -59,7 +64,7 @@ class _MyAppState extends State<MyApp> {
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
-    userStream = myFlutterAppKPAuthUserStream()
+    userStream = myBillionsAuthUserStream()
       ..listen((user) {
         _appStateNotifier.update(user);
       });
@@ -81,7 +86,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'MyFlutterAppKP',
+      title: 'MyBillions',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,

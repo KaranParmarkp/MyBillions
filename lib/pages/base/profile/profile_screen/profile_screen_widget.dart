@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,9 @@ export 'profile_screen_model.dart';
 
 class ProfileScreenWidget extends StatefulWidget {
   const ProfileScreenWidget({super.key});
+
+  static String routeName = 'profile_screen';
+  static String routePath = 'profileScreen';
 
   @override
   State<ProfileScreenWidget> createState() => _ProfileScreenWidgetState();
@@ -87,8 +91,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context
-                                        .pushNamed('personal_details_screen');
+                                    context.pushNamed(
+                                        PersonalDetailsScreenWidget.routeName);
                                   },
                                   child: Container(
                                     width: double.infinity,
@@ -143,7 +147,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('client_screen');
+                                    context.pushNamed(
+                                        ClientScreenWidget.routeName);
                                   },
                                   child: Container(
                                     width: double.infinity,
@@ -198,7 +203,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    context.pushNamed('fees_details_screen');
+                                    context.pushNamed(
+                                        FeesDetailsScreenWidget.routeName);
                                   },
                                   child: Container(
                                     width: double.infinity,
@@ -350,7 +356,8 @@ class _ProfileScreenWidgetState extends State<ProfileScreenWidget> {
                                         .clearRedirectLocation();
 
                                     context.goNamedAuth(
-                                        'sign_in_screen', context.mounted);
+                                        SignInScreenWidget.routeName,
+                                        context.mounted);
                                   },
                                   child: Container(
                                     width: double.infinity,

@@ -14,8 +14,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start MyBillionsApiGroup Group Code
 
 class MyBillionsApiGroupGroup {
-  static String getBaseUrl() =>
-      'https://Portal.mybillions.in/platform/API/api/';
+  static String getBaseUrl() => 'https://beta.mybillions.in/platform/API/api/';
   static Map<String, String> headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };

@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,9 @@ class ResetPasswordScreenWidget extends StatefulWidget {
   });
 
   final String? email;
+
+  static String routeName = 'reset_password_screen';
+  static String routePath = 'resetPasswordScreen';
 
   @override
   State<ResetPasswordScreenWidget> createState() =>
@@ -242,7 +246,8 @@ class _ResetPasswordScreenWidgetState extends State<ResetPasswordScreenWidget> {
                                           ),
                                         );
 
-                                        context.goNamed('sign_in_screen');
+                                        context.goNamed(
+                                            SignInScreenWidget.routeName);
                                       } else {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(

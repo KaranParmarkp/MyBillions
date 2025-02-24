@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,9 @@ export 'financial_screen_model.dart';
 
 class FinancialScreenWidget extends StatefulWidget {
   const FinancialScreenWidget({super.key});
+
+  static String routeName = 'financial_screen';
+  static String routePath = 'financialScreen';
 
   @override
   State<FinancialScreenWidget> createState() => _FinancialScreenWidgetState();
@@ -139,7 +143,7 @@ class _FinancialScreenWidgetState extends State<FinancialScreenWidget> {
                         }
 
                         context.pushNamed(
-                          'financial_question_screen',
+                          FinancialQuestionScreenWidget.routeName,
                           queryParameters: {
                             'planName': serializeParam(
                               '',

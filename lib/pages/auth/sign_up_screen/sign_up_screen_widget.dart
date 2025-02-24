@@ -10,6 +10,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,6 +20,9 @@ export 'sign_up_screen_model.dart';
 
 class SignUpScreenWidget extends StatefulWidget {
   const SignUpScreenWidget({super.key});
+
+  static String routeName = 'sign_up_screen';
+  static String routePath = 'signUpScreen';
 
   @override
   State<SignUpScreenWidget> createState() => _SignUpScreenWidgetState();
@@ -164,7 +168,8 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                                   0.0, 24.0, 0.0, 24.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  context.pushNamed('forgot_password_screen');
+                                  context.pushNamed(
+                                      ForgotPasswordScreenWidget.routeName);
                                 },
                                 text: FFLocalizations.of(context).getText(
                                   '9psf6yrm' /* Forgot Password? */,
@@ -315,7 +320,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                                           ),
                                         );
                                         _navigate = () => context.goNamedAuth(
-                                            'dashboard_screen',
+                                            DashboardScreenWidget.routeName,
                                             context.mounted);
                                       } else {
                                         ScaffoldMessenger.of(context)
@@ -366,7 +371,7 @@ class _SignUpScreenWidgetState extends State<SignUpScreenWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.goNamed('sign_in_screen');
+                                  context.goNamed(SignInScreenWidget.routeName);
                                 },
                                 child: Container(
                                   width: MediaQuery.sizeOf(context).width * 0.8,

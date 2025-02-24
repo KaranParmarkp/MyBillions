@@ -15,6 +15,9 @@ export 'client_screen_model.dart';
 class ClientScreenWidget extends StatefulWidget {
   const ClientScreenWidget({super.key});
 
+  static String routeName = 'client_screen';
+  static String routePath = 'clientScreen';
+
   @override
   State<ClientScreenWidget> createState() => _ClientScreenWidgetState();
 }

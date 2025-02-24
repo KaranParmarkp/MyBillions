@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,6 +15,9 @@ export 'text_saving_screen_model.dart';
 
 class TextSavingScreenWidget extends StatefulWidget {
   const TextSavingScreenWidget({super.key});
+
+  static String routeName = 'text_saving_screen';
+  static String routePath = 'textSavingScreen';
 
   @override
   State<TextSavingScreenWidget> createState() => _TextSavingScreenWidgetState();
@@ -139,7 +143,7 @@ class _TextSavingScreenWidgetState extends State<TextSavingScreenWidget> {
                         }
 
                         context.pushNamed(
-                          'text_saving_questions_screen',
+                          TextSavingQuestionsScreenWidget.routeName,
                           queryParameters: {
                             'planName': serializeParam(
                               _model.appTextfieldModel.textfieldTextController

@@ -183,7 +183,7 @@ class _PfFiltersWidgetState extends State<PfFiltersWidget> {
                                   columnReportsPfDropdownResponse.jsonBody)!
                               .investorLists
                               .map((e) => e.name)
-                              .toList(),
+                              .toList()..add("All"),
                           onChanged: (val) async {
                             safeSetState(
                                 () => _model.applicantDropdownValue = val);
@@ -268,7 +268,7 @@ class _PfFiltersWidgetState extends State<PfFiltersWidget> {
                                   columnReportsPfDropdownResponse.jsonBody)!
                               .customerPlanLists
                               .map((e) => e.planName)
-                              .toList(),
+                              .toList()..add("All"),
                           onChanged: (val) async {
                             safeSetState(() => _model.goalsDropdownValue = val);
                             _model.updateLocalRequestModelStruct(

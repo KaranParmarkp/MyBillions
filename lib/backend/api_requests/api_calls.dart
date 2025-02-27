@@ -14,7 +14,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start MyBillionsApiGroup Group Code
 
 class MyBillionsApiGroupGroup {
-  static String getBaseUrl() => 'https://beta.mybillions.in/platform/API/api/';
+  static String getBaseUrl() => 'http://beta.mybillions.in/platform/API/api/';
   static Map<String, String> headers = {
     'Content-Type': 'application/x-www-form-urlencoded',
   };
@@ -41,6 +41,7 @@ class MyBillionsApiGroupGroup {
       PortfolioAllocationCall();
   static TaxSavingCall taxSavingCall = TaxSavingCall();
   static CapitalGainCall capitalGainCall = CapitalGainCall();
+  static TransactionReportCall transactionReportCall = TransactionReportCall();
 }
 
 class SignInCall {
@@ -1272,6 +1273,42 @@ class CapitalGainCall {
         r'''$.Investors[:].Category''',
         true,
       ) as List?;
+}
+
+class TransactionReportCall {
+  Future<ApiCallResponse> call({
+    String? customerId = '',
+    String? investorID = '',
+    String? category = '',
+    String? term = '',
+    String? fYear = '',
+  }) async {
+    final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'transaction report',
+      apiUrl: '${baseUrl}/Report/GetTransactionReport',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      params: {
+        'CustomerId': customerId,
+        'InvestorID': investorID,
+        'Category': category,
+        'Term': term,
+        'FYear': fYear,
+      },
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
 }
 
 /// End MyBillionsApiGroup Group Code

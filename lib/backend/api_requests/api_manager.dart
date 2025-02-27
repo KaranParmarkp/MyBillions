@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'dart:core';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -398,7 +399,7 @@ class ApiManager {
         client: client,
       );
 
-  Future<ApiCallResponse> makeApiCall({
+  /*Future<ApiCallResponse> makeApiCall({
     required String callName,
     required String apiUrl,
     required ApiCallType callType,
@@ -516,5 +517,156 @@ class ApiManager {
     }
 
     return result;
+  }*/
+
+
+
+
+
+  Future<ApiCallResponse> makeApiCall({
+    required String callName,
+    required String apiUrl,
+    required ApiCallType callType,
+    Map<String, dynamic> headers = const {},
+    Map<String, dynamic> params = const {},
+    String? body,
+    BodyType? bodyType,
+    bool returnBody = true,
+    bool encodeBodyUtf8 = false,
+    bool decodeUtf8 = false,
+    bool alwaysAllowBody = false,
+    bool cache = false,
+    bool isStreamingApi = false,
+    ApiCallOptions? options,
+    http.Client? client,
+  }) async {
+    final callOptions = options ??
+        ApiCallOptions(
+          callName: callName,
+          callType: callType,
+          apiUrl: apiUrl,
+          headers: headers,
+          params: params,
+          bodyType: bodyType,
+          body: body,
+          returnBody: returnBody,
+          encodeBodyUtf8: encodeBodyUtf8,
+          decodeUtf8: decodeUtf8,
+          alwaysAllowBody: alwaysAllowBody,
+          cache: cache,
+          isStreamingApi: isStreamingApi,
+        );
+
+    if (_accessToken != null) {
+      headers[HttpHeaders.authorizationHeader] = 'Bearer $_accessToken';
+    }
+    if (!apiUrl.startsWith('http')) {
+      apiUrl = 'https://$apiUrl';
+    }
+
+    // Log API Call Start
+    log("$callName - $callType $apiUrl",name: "API-CALL");
+
+    // Generate cURL command for debugging
+   // final curlRequest = _generateCurlRequest(apiUrl, callType, headers, params, body);
+   // log(curlRequest,name: "CURL");
+
+    if (cache && _apiCache.containsKey(callOptions)) {
+      return _apiCache[callOptions]!;
+    }
+
+    ApiCallResponse result;
+    try {
+      switch (callType) {
+        case ApiCallType.GET:
+          result = await urlRequest(
+            callType,
+            apiUrl,
+            headers,
+            params,
+            returnBody,
+            decodeUtf8,
+            isStreamingApi,
+            client: client,
+          );
+          break;
+        case ApiCallType.DELETE:
+          result = alwaysAllowBody
+              ? await requestWithBody(
+            callType,
+            apiUrl,
+            headers,
+            params,
+            body,
+            bodyType,
+            returnBody,
+            encodeBodyUtf8,
+            decodeUtf8,
+            alwaysAllowBody,
+            isStreamingApi,
+            client: client,
+          )
+              : await urlRequest(
+            callType,
+            apiUrl,
+            headers,
+            params,
+            returnBody,
+            decodeUtf8,
+            isStreamingApi,
+            client: client,
+          );
+          break;
+        case ApiCallType.POST:
+        case ApiCallType.PUT:
+        case ApiCallType.PATCH:
+          result = await requestWithBody(
+            callType,
+            apiUrl,
+            headers,
+            params,
+            body,
+            bodyType,
+            returnBody,
+            encodeBodyUtf8,
+            decodeUtf8,
+            alwaysAllowBody,
+            isStreamingApi,
+            client: client,
+          );
+          break;
+      }
+
+      if (cache) {
+        _apiCache[callOptions] = result;
+      }
+    } catch (e, stackTrace) {
+      log("❌ API Error in $callName", error: e, stackTrace: stackTrace);
+      result = ApiCallResponse(null, {}, -1, exception: e);
+    }
+
+    return result;
   }
+
+// Function to generate cURL command
+  String _generateCurlRequest(String url, ApiCallType method, Map<String, dynamic> headers, Map<String, dynamic> params, String? body) {
+    final buffer = StringBuffer();
+    buffer.write("curl -X ${method.name.toUpperCase()} '$url'");
+
+    headers.forEach((key, value) {
+      buffer.write(" -H '$key: $value'");
+    });
+
+    if (params.isNotEmpty) {
+      buffer.write(" -d '${Uri(queryParameters: params).query}'");
+    }
+
+    if (body != null && body.isNotEmpty) {
+      buffer.write(" -d '$body'");
+    }
+
+    return buffer.toString();
+  }
+
+
 }

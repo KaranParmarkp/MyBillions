@@ -181,7 +181,7 @@ class _CpFiltersWidgetState extends State<CpFiltersWidget> {
                                   columnReportsPfDropdownResponse.jsonBody)!
                               .investorLists
                               .map((e) => e.name)
-                              .toList(),
+                              .toList()..add("All"),
                           onChanged: (val) async {
                             safeSetState(
                                 () => _model.applicantDropdownValue = val);

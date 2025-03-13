@@ -161,16 +161,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ClientScreenWidget(),
             ),
             FFRoute(
-              name: TextSavingScreenWidget.routeName,
-              path: TextSavingScreenWidget.routePath,
+              name: GoalSavingScreenWidget.routeName,
+              path: GoalSavingScreenWidget.routePath,
               requireAuth: true,
-              builder: (context, params) => TextSavingScreenWidget(),
+              builder: (context, params) => GoalSavingScreenWidget(
+                goalIndex: params.getParam("goalIndex", ParamType.int),
+
+              ),
             ),
             FFRoute(
-              name: TextSavingQuestionsScreenWidget.routeName,
-              path: TextSavingQuestionsScreenWidget.routePath,
+              name: GoalSavingQuestionsScreenWidget.routeName,
+              path: GoalSavingQuestionsScreenWidget.routePath,
               requireAuth: true,
-              builder: (context, params) => TextSavingQuestionsScreenWidget(
+              builder: (context, params) => GoalSavingQuestionsScreenWidget(
+                goalIndex: params.getParam("goalIndex", ParamType.int),
                 planName: params.getParam(
                   'planName',
                   ParamType.String,

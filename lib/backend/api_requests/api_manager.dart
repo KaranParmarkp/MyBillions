@@ -565,11 +565,11 @@ class ApiManager {
     }
 
     // Log API Call Start
-    log("$callName - $callType $apiUrl",name: "API-CALL");
+    log("$callType $apiUrl params= $params body=$body",name: "REQUEST-$callName");
 
     // Generate cURL command for debugging
-   // final curlRequest = _generateCurlRequest(apiUrl, callType, headers, params, body);
-   // log(curlRequest,name: "CURL");
+    final curlRequest = _generateCurlRequest(apiUrl, callType, headers, params, body);
+    log(curlRequest.toString(),name: "CURL $callName");
 
     if (cache && _apiCache.containsKey(callOptions)) {
       return _apiCache[callOptions]!;
@@ -644,29 +644,39 @@ class ApiManager {
       log("❌ API Error in $callName", error: e, stackTrace: stackTrace);
       result = ApiCallResponse(null, {}, -1, exception: e);
     }
-
+    log(result.jsonBody.toString(),name: "RESPONSE-${callName}");
     return result;
   }
 
 // Function to generate cURL command
   String _generateCurlRequest(String url, ApiCallType method, Map<String, dynamic> headers, Map<String, dynamic> params, String? body) {
-    final buffer = StringBuffer();
-    buffer.write("curl -X ${method.name.toUpperCase()} '$url'");
+    try {
+      final buffer = StringBuffer();
+      buffer.write("curl -X ${method.name.toUpperCase()} '$url'");
 
-    headers.forEach((key, value) {
-      buffer.write(" -H '$key: $value'");
-    });
+      headers.forEach((key, value) {
+        buffer.write(" -H '$key: $value'");
+      });
 
-    if (params.isNotEmpty) {
-      buffer.write(" -d '${Uri(queryParameters: params).query}'");
+      if (params.isNotEmpty) {
+        // Convert all values in params to String
+        final formattedParams = params.map((key, value) => MapEntry(key, value.toString()));
+
+        buffer.write(" -d '${Uri(queryParameters: formattedParams).query}'");
+      }
+
+      if (body != null && body.isNotEmpty) {
+        buffer.write(" -d '$body'");
+      }
+
+      return buffer.toString();
+    } catch (e, stackTrace) {
+      print("Error generating cURL request: $e");
+      print(stackTrace);
+      return "";
     }
-
-    if (body != null && body.isNotEmpty) {
-      buffer.write(" -d '$body'");
-    }
-
-    return buffer.toString();
   }
+
 
 
 }

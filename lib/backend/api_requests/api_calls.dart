@@ -1278,26 +1278,48 @@ class CapitalGainCall {
 class TransactionReportCall {
   Future<ApiCallResponse> call({
     String? customerId = '',
-    String? investorID = '',
+    String? clientCode = '0',
+    String? customerPlanId = '0',
     String? category = '',
-    String? term = '',
-    String? fYear = '',
+    String? folioNo = '',
+    String? transactionType = '',
+    String? fundHouse = '',
+    String? startDate = '',
+    String? endDate = '',
+    String? allFolio = 'AllNonFolio',
+    String? viewFormat = '',
+    String? schemeCode = '',
+    String? investorId = "",
+    String? planId = "",
+    String? schemeName = "",
+
   }) async {
     final baseUrl = MyBillionsApiGroupGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
       callName: 'transaction report',
-      apiUrl: '${baseUrl}/Report/GetTransactionReport',
+      apiUrl: '${baseUrl}Report/GetTransactionReport',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       params: {
-        'CustomerId': customerId,
-        'InvestorID': investorID,
-        'Category': category,
-        'Term': term,
-        'FYear': fYear,
+        "CustomerId": customerId,
+        "PlanId": planId,
+        "ClientCode":clientCode,
+        "CustomerPlanId":customerPlanId,
+        "Category":category,
+        "FolioNo":folioNo,
+        "transactionType":transactionType,
+        "fundHouse":fundHouse,
+        "startdate":startDate,
+        "enddate":endDate,
+        "AllFolio":allFolio,
+        "viewFormat":viewFormat,
+        "SchemeCode":schemeCode,
+        "investorID":investorId,
+        "schemeName":schemeName
+
       },
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
@@ -1308,8 +1330,8 @@ class TransactionReportCall {
       alwaysAllowBody: false,
     );
   }
-
 }
+
 
 /// End MyBillionsApiGroup Group Code
 

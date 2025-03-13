@@ -43,6 +43,9 @@ class _GoalScreenWidgetState extends State<GoalScreenWidget> {
     super.dispose();
   }
 
+  /// GOAL INDEX BELOW
+  /// 1 for tax saving
+  /// 2 for dynamic saving
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -84,7 +87,12 @@ class _GoalScreenWidgetState extends State<GoalScreenWidget> {
                           desc:
                               'Save up to Rs. 45,000 in taxes by investing into the best tax saving funds, backed by our research',
                           goalOnTap: () async {
-                            context.pushNamed(TextSavingScreenWidget.routeName);
+                            context.pushNamed(GoalSavingScreenWidget.routeName,queryParameters: {
+                              'goalIndex': serializeParam(
+                                1,
+                                ParamType.int,
+                              ),
+                            }.withoutNulls,);
                           },
                         ),
                       ),
@@ -101,6 +109,27 @@ class _GoalScreenWidgetState extends State<GoalScreenWidget> {
                               'Whatever be your financial goals and time horizon, we will help you invest into the best portfolio, to ensure that you achieve your targets',
                           goalOnTap: () async {
                             context.pushNamed(FinancialScreenWidget.routeName);
+                          },
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                      EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 0.0),
+                      child: wrapWithModel(
+                        model: _model.financialGoalModel,
+                        updateCallback: () => safeSetState(() {}),
+                        child: GoalCardWidget(
+                          title: 'Dynamic Savings Account',
+                          desc:
+                          'Our liquid fund portfolio ensures best returns (in the class) on money parked for the short-term',
+                          goalOnTap: () async {
+                            context.pushNamed(GoalSavingScreenWidget.routeName,queryParameters: {
+                              'goalIndex': serializeParam(
+                                2,
+                                ParamType.int,
+                              ),
+                            }.withoutNulls,);
                           },
                         ),
                       ),

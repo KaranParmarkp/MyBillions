@@ -19,10 +19,10 @@ export '/pages/base/profile/fees_details_screen/fees_details_screen_widget.dart'
     show FeesDetailsScreenWidget;
 export '/pages/base/profile/client_screen/client_screen_widget.dart'
     show ClientScreenWidget;
-export '/pages/base/goals/tax_saving/text_saving_screen/text_saving_screen_widget.dart'
-    show TextSavingScreenWidget;
-export '/pages/base/goals/tax_saving/text_saving_questions_screen/text_saving_questions_screen_widget.dart'
-    show TextSavingQuestionsScreenWidget;
+export '/pages/base/goals/tax_saving/goal_saving_screen/goal_saving_screen_widget.dart'
+    show GoalSavingScreenWidget;
+export '/pages/base/goals/tax_saving/goal_saving_questions_screen/goal_saving_questions_screen_widget.dart'
+    show GoalSavingQuestionsScreenWidget;
 export '/pages/base/goals/financial_goal/financial_question_screen/financial_question_screen_widget.dart'
     show FinancialQuestionScreenWidget;
 export '/pages/base/goals/financial_goal/financial_screen/financial_screen_widget.dart'

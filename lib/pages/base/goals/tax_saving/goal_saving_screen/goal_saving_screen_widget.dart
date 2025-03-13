@@ -1,3 +1,4 @@
+import '../goal_saving_questions_screen/goal_saving_questions_screen_widget.dart';
 import '/components/app_button/app_button_widget.dart';
 import '/components/app_textfield/app_textfield_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -10,28 +11,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'text_saving_screen_model.dart';
-export 'text_saving_screen_model.dart';
+import 'goal_saving_screen_model.dart';
+export 'goal_saving_screen_model.dart';
 
-class TextSavingScreenWidget extends StatefulWidget {
-  const TextSavingScreenWidget({super.key});
+class GoalSavingScreenWidget extends StatefulWidget {
+  const GoalSavingScreenWidget({super.key, required this.goalIndex});
 
-  static String routeName = 'text_saving_screen';
-  static String routePath = 'textSavingScreen';
-
+  static String routeName = 'goal_saving_screen';
+  static String routePath = 'goalSavingScreen';
+  final int goalIndex;
   @override
-  State<TextSavingScreenWidget> createState() => _TextSavingScreenWidgetState();
+  State<GoalSavingScreenWidget> createState() => _GoalSavingScreenWidgetState();
 }
 
-class _TextSavingScreenWidgetState extends State<TextSavingScreenWidget> {
-  late TextSavingScreenModel _model;
+class _GoalSavingScreenWidgetState extends State<GoalSavingScreenWidget> {
+  late GoalSavingScreenModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => TextSavingScreenModel());
+    _model = createModel(context, () => GoalSavingScreenModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -103,9 +104,7 @@ class _TextSavingScreenWidgetState extends State<TextSavingScreenWidget> {
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
                       child: Text(
-                        FFLocalizations.of(context).getText(
-                          'ydyghz4a' /* Write a name for Tax saving pl... */,
-                        ),
+                        "Write a name for ${widget.goalIndex==1?"Tax":"Dynamic"} saving plan.",
                         textAlign: TextAlign.center,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
@@ -143,13 +142,17 @@ class _TextSavingScreenWidgetState extends State<TextSavingScreenWidget> {
                         }
 
                         context.pushNamed(
-                          TextSavingQuestionsScreenWidget.routeName,
+                          GoalSavingQuestionsScreenWidget.routeName,
                           queryParameters: {
                             'planName': serializeParam(
                               _model.appTextfieldModel.textfieldTextController
                                   .text,
                               ParamType.String,
                             ),
+                            "goalIndex":serializeParam(
+                              widget.goalIndex,
+                              ParamType.int,
+                            )
                           }.withoutNulls,
                         );
 

@@ -1,3 +1,5 @@
+import 'package:my_billions/pages/base/dashboard/reports/transaction_report/transaction_report_list.dart';
+
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -47,7 +49,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(20.0, 5.0, 20.0, 0.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(20.0, 5.0, 20.0, 0.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -56,7 +58,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 5.0, 0.0, 10.0),
                   child: FlutterFlowDropDown<String>(
                     controller: _model.dropDownValueController ??=
                         FormFieldController<String>(
@@ -107,7 +109,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
                     borderWidth: 1.0,
                     borderRadius: 8.0,
                     margin:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 4.0, 16.0, 4.0),
                     hidesUnderline: true,
                     isOverButton: false,
                     isSearchable: false,
@@ -122,7 +124,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
               child: wrapWithModel(
                 model: _model.portfolioListModel,
                 updateCallback: () => safeSetState(() {}),
-                child: PortfolioListWidget(),
+                child: const PortfolioListWidget(),
               ),
             ),
           if (_model.dropDownValue == 'Portfolio Allocation')
@@ -130,7 +132,7 @@ class _ReportsWidgetState extends State<ReportsWidget> {
               child: wrapWithModel(
                 model: _model.portfolioAllocationScreenModel,
                 updateCallback: () => safeSetState(() {}),
-                child: PortfolioAllocationScreenWidget(),
+                child: const PortfolioAllocationScreenWidget(),
               ),
             ),
           if (_model.dropDownValue == 'Capital Gain')
@@ -138,8 +140,12 @@ class _ReportsWidgetState extends State<ReportsWidget> {
               child: wrapWithModel(
                 model: _model.capitalGainListModel,
                 updateCallback: () => safeSetState(() {}),
-                child: CapitalGainListWidget(),
+                child: const CapitalGainListWidget(),
               ),
+            ),
+          if (_model.dropDownValue == 'Transaction Report')
+            const Expanded(
+              child: TransactionReportList(),
             ),
         ],
       ),

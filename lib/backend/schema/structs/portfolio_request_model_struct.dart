@@ -12,6 +12,7 @@ class PortfolioRequestModelStruct extends BaseStruct {
     int? planID,
     String? category,
     int? allFolio,
+    String? allFolioName,
     String? startdate,
     String? enddate,
     String? fundHouse,
@@ -19,18 +20,28 @@ class PortfolioRequestModelStruct extends BaseStruct {
     String? folioNumber,
     DateTime? endDateTime,
     DateTime? startDateTime,
+
+    String? clientCode,
+    String? customerPlainId,
+    String? transactionType,
+    String? schemeCode,
   })  : _investorId = investorId,
         _customerId = customerId,
         _planID = planID,
         _category = category,
         _allFolio = allFolio,
+        _allFolioName = allFolioName,
         _startdate = startdate,
         _enddate = enddate,
         _fundHouse = fundHouse,
         _schemeName = schemeName,
         _folioNumber = folioNumber,
         _endDateTime = endDateTime,
-        _startDateTime = startDateTime;
+        _startDateTime = startDateTime,
+        _clientCode=clientCode,
+        _transactionType=transactionType,
+        _SchemeCode=schemeCode,
+        _customderPlanId=customerPlainId;
 
   // "InvestorId" field.
   int? _investorId;
@@ -70,6 +81,11 @@ class PortfolioRequestModelStruct extends BaseStruct {
   int? _allFolio;
   int get allFolio => _allFolio ?? 1;
   set allFolio(int? val) => _allFolio = val;
+
+  // "AllFolio" field.
+  String? _allFolioName;
+  String get allFolioName => _allFolioName ?? "AllNonFolio";
+  set allFolioName(String? val) => _allFolioName = val;
 
   void incrementAllFolio(int amount) => allFolio = allFolio + amount;
 
@@ -123,6 +139,33 @@ class PortfolioRequestModelStruct extends BaseStruct {
   set startDateTime(DateTime? val) => _startDateTime = val;
 
   bool hasStartDateTime() => _startDateTime != null;
+
+
+  // "ClientCode" field.
+  String? _clientCode;
+  String get clientCode => _clientCode ?? '0';
+  set clientCode(String? val) => _clientCode = val;
+
+  // "CustomerPlanId" field.
+  String? _customderPlanId;
+  String get customderPlanId => _customderPlanId ?? '0';
+  set customderPlanId(String? val) => _customderPlanId = val;
+
+  // "TransactionType" field.
+  String? _transactionType;
+  String get transactionType => _transactionType ?? '';
+  set transactionType(String? val) => _transactionType = val;
+
+
+  String? _AllFolios;
+  String get AllFolios => _AllFolios ?? '';
+  set AllFolios(String? val) => _AllFolios = val;
+
+  String? _SchemeCode;
+  String get SchemeCode => _SchemeCode ?? '';
+  set SchemeCode(String? val) => _SchemeCode = val;
+
+
 
   static PortfolioRequestModelStruct fromMap(Map<String, dynamic> data) =>
       PortfolioRequestModelStruct(

@@ -313,10 +313,16 @@ int toInt(dynamic number) {
 
 String savePlanFunction(List<String> list) {
   if (list.length == 2) {
+    ///financial
     return "StartingBalance:${list[0]},Lumpsum:${list[0]},MonthlyInvestment:${list[1]},YEARS:3000,Expense:0,MONTHLYTOTALCONTRIBUTION:0,TrackStatus:0,FutureValue:0,MonthlyInvestmentRequired:0";
   } else if (list.length == 4) {
+    ///tax
     return "Expense:${list[0]},YEARS:${list[1]},StartingBalance:${list[2]},Lumpsum:${list[2]},MonthlyInvestment:${list[3]},MONTHLYTOTALCONTRIBUTION:0,TrackStatus:0,FutureValue:0,MonthlyInvestmentRequired:0";
+  } else if (list.length == 3) {
+    ///dynamic
+    return "StartingBalance:${list[0]},Lumpsum:${list[0]},MonthlyInvestment:${list[1]},YEARS:3000,Expense:0,MONTHLYTOTALCONTRIBUTION:0,TrackStatus:0,FutureValue:0,MonthlyInvestmentRequired:0";
   } else {
+    //StartingBalance:1234,Lumpsum:1234,YEARS:15,MonthlyInvestment:200,Expense:0,MONTHLYTOTALCONTRIBUTION:0,TrackStatus:0,FutureValue:0,MonthlyInvestmentRequired:0
     return "";
   }
 }
